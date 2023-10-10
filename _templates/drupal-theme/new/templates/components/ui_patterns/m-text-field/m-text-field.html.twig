@@ -1,0 +1,42 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-text-field/m-text-field.html.twig
+---
+{% if item %}
+  {% set classes = [
+    'm-text-field',
+  ] %}
+  <div {{ attributes.addClass(classes) }}>
+    {% if container %}
+      {% set container_classes = [
+        'h-container',
+        container_width and container_width != 'default' ? 'h-container--' ~ container_width : [],
+        container_horizontal_padding and container_horizontal_padding != 'default' ? 'h-container--' ~ container_horizontal_padding : [],
+        container_vertical_padding and container_vertical_padding != 'default' ? 'h-container--' ~ container_vertical_padding : [],
+        container_horizontal_margin and container_horizontal_margin != 'default' ? 'h-container--' ~ container_horizontal_margin : [],
+        container_vertical_margin and container_vertical_margin != 'default' ? 'h-container--' ~ container_vertical_margin : [],
+      ] %}
+      <div {{ create_attribute().addClass(container_classes) }}>
+    {% endif %}
+    {% if label %}
+      {% include '@component/a-text/a-text.html.twig' with {
+        attributes: create_attribute().addClass('m-text-field__label'),
+        tag: label_tag,
+        type: label_type,
+        content: label,
+        custom_content: label_override,
+      } only %}
+    {% endif %}
+    {% if item %}
+      {% include '@component/a-text/a-text.html.twig' with {
+        attributes: create_attribute().addClass('m-text-field__item'),
+        tag: item_tag,
+        type: item_type,
+        href: item_href,
+        content: item,
+      } only %}
+    {% endif %}
+    {% if container %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

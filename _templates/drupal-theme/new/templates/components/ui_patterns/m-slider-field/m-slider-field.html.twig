@@ -1,0 +1,47 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-slider-field/m-slider-field.html.twig
+---
+{% if items %}
+  {% set classes = [
+    'm-slider-field',
+    type ? 'm-slider-field--' ~ type : [],
+  ] %}
+  <div {{ attributes.addClass(classes).setAttribute('data-items-amount', items|length) }}>
+    {% if container %}
+      {% set container_classes = [
+        'h-container',
+        container_width and container_width != 'default' ? 'h-container--' ~ container_width : [],
+        container_horizontal_padding and container_horizontal_padding != 'default' ? 'h-container--' ~ container_horizontal_padding : [],
+        container_vertical_padding and container_vertical_padding != 'default' ? 'h-container--' ~ container_vertical_padding : [],
+        container_horizontal_margin and container_horizontal_margin != 'default' ? 'h-container--' ~ container_horizontal_margin : [],
+        container_vertical_margin and container_vertical_margin != 'default' ? 'h-container--' ~ container_vertical_margin : [],
+      ] %}
+      <div {{ create_attribute().addClass(container_classes) }}>
+    {% endif %}
+    {% if label %}
+      {% include '@component/a-text/a-text.html.twig' with {
+        attributes: create_attribute().addClass('m-slider-field__label'),
+        tag: label_tag,
+        type: label_type,
+        content: label,
+        custom_content: label_override,
+      } only %}
+    {% endif %}
+    {% if items %}
+      <div class="m-slider-field__slider splide" role="group">
+        <div class="m-slider-field__track splide__track">
+          <ul class="m-slider-field__list splide__list">
+            {% for item in items %}
+              <li class="m-slider-field__slide splide__slide">
+                {{ item }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    {% if container %}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

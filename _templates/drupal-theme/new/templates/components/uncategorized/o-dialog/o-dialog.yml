@@ -1,0 +1,6 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/o-dialog/o-dialog.yml
+---
+o_dialog:
+  use: '@component/o-dialog/o-dialog.html.twig'
+  label: Organism / Dialog

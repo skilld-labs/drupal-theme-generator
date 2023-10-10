@@ -1,0 +1,29 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-table/m-table.src.css
+---
+.m-table {
+  display: block;
+  overflow-x: auto;
+
+  &__table {
+    width: 100%;
+    border-spacing: 0;
+    white-space: nowrap;
+    border-collapse: collapse;
+
+    @media (--l) {
+      white-space: normal;
+    }
+  }
+
+  &__cell {
+    padding: 10px 16px;
+    font-size: 14px;
+
+    &--head {
+      text-align: start;
+      color: var(--color-white);
+      background-color: var(--color-black);
+    }
+  }
+}

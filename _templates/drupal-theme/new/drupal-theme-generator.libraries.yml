@@ -1,0 +1,60 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/<%= h.changeCase.lower(name) %>.libraries.yml
+---
+base:
+  css:
+    theme:
+      color/colors.css: {}
+    base:
+      css/styles.css: {}
+    component:
+      templates/components/uncategorized/h-boolean/h-boolean.css: {}
+      templates/components/uncategorized/h-button/h-button.css: {}
+      templates/components/layouts/h-container/h-container.css: {}
+      templates/components/uncategorized/h-text-input/h-text-input.css: {}
+  js:
+    templates/components/uncategorized/h-root-variables/h-root-variables.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - <%= h.changeCase.lower(name) %>/a-text
+    - <%= h.changeCase.lower(name) %>/a-icon
+
+a-throbber:
+  css:
+    component:
+      templates/components/uncategorized/a-throbber/a-throbber.css: {}
+  js:
+    js/ajax-throbber.js: {}
+
+h-wrapper-as-link:
+  css:
+    component:
+      templates/components/uncategorized/h-wrapper-as-link/h-wrapper-as-link.css:
+        {}
+  js:
+    templates/components/uncategorized/h-wrapper-as-link/h-wrapper-as-link.js:
+      {}
+
+o-dialog:
+  css:
+    component:
+      templates/components/uncategorized/o-dialog/o-dialog.css: {}
+
+color.preview:
+  css:
+    theme:
+      color/preview.css: {}
+  js:
+    color/preview.js: {}
+  dependencies:
+    - color/drupal.color
+
+states:
+  js:
+    js/states.js: {}
+
+toolbar:
+  css:
+    component:
+      css/toolbar.css: {}

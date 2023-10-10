@@ -1,0 +1,11 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/a-textarea/a-textarea.src.css
+---
+.a-textarea {
+  &__element {
+    display: block;
+    min-height: 160px;
+    max-height: 320px;
+    resize: vertical;
+  }
+}

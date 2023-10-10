@@ -1,0 +1,6 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/a-throbber/a-throbber.yml
+---
+a_throbber:
+  use: '@component/a-throbber/a-throbber.html.twig'
+  label: Atoms / Throbber

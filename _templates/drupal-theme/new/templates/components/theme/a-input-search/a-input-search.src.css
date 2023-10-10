@@ -1,0 +1,8 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-search/a-input-search.src.css
+---
+/* .a-input-search {} */
+
+input[type='search' i]::-webkit-search-cancel-button {
+  display: none;
+}

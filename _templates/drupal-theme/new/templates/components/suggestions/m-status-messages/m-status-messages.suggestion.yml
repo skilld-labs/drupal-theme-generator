@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-status-messages/m-status-messages.suggestion.yml
+---
+m_status_messages:
+  use: '@component/m-status-messages/m-status-messages.html.twig'
+  label: Molecules / Status messages
+  base hook: 'status_messages'
+  libraries:
+    - m-status-messages:
+        css:
+          component:
+            m-status-messages.css: {}

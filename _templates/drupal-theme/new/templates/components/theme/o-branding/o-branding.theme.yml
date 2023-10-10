@@ -1,0 +1,13 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/o-branding/o-branding.theme.yml
+---
+o_branding:
+  use: '@component/o-branding/o-branding.html.twig'
+  label: Organism / Branding
+  hook theme: 'block__system_branding_block'
+  base hook: 'block'
+  libraries:
+    - o-branding:
+        css:
+          component:
+            o-branding.css: {}

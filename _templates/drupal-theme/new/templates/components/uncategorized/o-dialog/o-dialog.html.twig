@@ -1,0 +1,17 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/o-dialog/o-dialog.html.twig
+---
+<div {{ attributes.addClass('o-dialog') }}>
+  <div class="o-dialog__title-container">
+    <div class="o-dialog__title">
+      {{ title }}
+    </div>
+    <div class="o-dialog__close">
+      {{ close }}
+    </div>
+  </div>
+  <div class="o-dialog__content">
+    {{ content }}
+  </div>
+</div>
+<div class="o-dialog-overlay"></div>

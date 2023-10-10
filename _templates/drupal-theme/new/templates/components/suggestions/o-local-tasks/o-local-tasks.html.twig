@@ -1,0 +1,17 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/o-local-tasks/o-local-tasks.html.twig
+---
+{% if primary or secondary %}
+  <div class="h-container h-container--w-1 h-container--hp-2 h-container--vp-5">
+    <div class="o-local-tasks">
+      <ul class="o-local-tasks__list">
+        {% if primary %}
+          {{ primary }}
+        {% endif %}
+        {% if secondary %}
+          {{ secondary }}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+{% endif %}

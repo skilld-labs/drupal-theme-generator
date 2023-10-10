@@ -1,0 +1,34 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-details/m-details.html.twig
+---
+<details{{ attributes.addClass('m-details') }}>
+  {%- if title -%}
+    {% set summary_classes = [
+      'm-details__summary',
+      required ? 'js-form-required form-required' : [],
+    ] %}
+    <summary {{ summary_attributes.addClass(summary_classes) }}>
+      <span class="m-details__summary-span">
+        {% include '@component/a-text/a-text.html.twig' with {
+          attributes: create_attribute().addClass('m-details__title'),
+          tag: 'span',
+          content: title,
+        } only %}
+        {% include '@component/a-icon/a-icon.html.twig' with {
+          attributes: create_attribute().addClass('m-details__icon'),
+          icon: 'chevron',
+          <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+        } only %}
+      </span>
+    </summary>
+  {%- endif -%}
+  {% if errors %}
+    <div>
+      {{ errors }}
+    </div>
+  {% endif %}
+  {{ description }}
+  <div class="m-details__content">
+    {{ children }}
+  </div>
+</details>

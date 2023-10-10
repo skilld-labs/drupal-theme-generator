@@ -1,0 +1,24 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-breadcrumb/m-breadcrumb.html.twig
+---
+<nav {{ attributes.addClass('m-breadcrumb').setAttribute('role', 'navigation') }}>
+  <ul class="m-breadcrumb__list">
+    {% for item in breadcrumb %}
+      <li class="m-breadcrumb__item">
+        {% if item.url %}
+          {% include '@component/a-text/a-text.html.twig' with {
+            attributes: create_attribute().addClass('m-breadcrumb__element', 'm-breadcrumb__element--trailing'),
+            href: item.url,
+            content: item.text,
+          } %}
+        {% else %}
+          {% include '@component/a-text/a-text.html.twig' with {
+            attributes: create_attribute().addClass('m-breadcrumb__element', 'm-breadcrumb__element--current'),
+            content: item.text,
+            tag: 'span',
+          } %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

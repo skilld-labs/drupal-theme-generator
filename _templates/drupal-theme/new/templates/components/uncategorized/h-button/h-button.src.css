@@ -1,0 +1,102 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/h-button/h-button.src.css
+---
+.h-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  transition-timing-function: var(--transition-timing-function-cubic-bezier);
+  transition-duration: var(--transition-duration-0-25);
+  transition-property: border-color, background-color, color;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-dark-grey);
+  border: 2px solid currentColor;
+  background-color: var(--color-white);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  line-height: inherit;
+  appearance: none;
+  gap: 10px;
+
+  &:not([disabled], .is-disabled) {
+    cursor: pointer;
+  }
+
+  &:not([disabled], .is-disabled):hover,
+  [wrapper-as-link-built]:hover & {
+    color: var(--color-black);
+  }
+
+  &[disabled],
+  &.is-disabled {
+    color: var(--color-grey);
+  }
+
+  &--second {
+    color: var(--color-white);
+    border-color: var(--color-black);
+    background-color: var(--color-black);
+
+    &:not([disabled], .is-disabled):hover,
+    [wrapper-as-link-built]:hover & {
+      color: var(--color-white);
+      border-color: var(--color-dark-grey);
+      background-color: var(--color-dark-grey);
+    }
+
+    &[disabled],
+    &.is-disabled {
+      color: var(--color-white);
+      border-color: var(--color-grey);
+      background-color: var(--color-grey);
+    }
+  }
+
+  &__icon-container {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+
+    &--throbber-full {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: h-button-ajax-circle-full-animation
+        var(--transition-duration-0-25) linear infinite;
+
+      & ~ * {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__icon {
+    width: inherit;
+    height: inherit;
+    fill: currentColor;
+
+    &--throbber {
+      & + * {
+        display: none;
+      }
+    }
+  }
+}
+
+@keyframes h-button-ajax-circle-full-animation {
+  from {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

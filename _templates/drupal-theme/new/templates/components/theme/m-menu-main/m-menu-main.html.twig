@@ -1,0 +1,43 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/m-menu-main/m-menu-main.html.twig
+---
+{% set icon %}
+  {% include '@component/a-icon/a-icon.html.twig' with {
+    attributes: create_attribute().addClass('m-menu-main__icon'),
+    icon: 'chevron',
+    <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+  } only %}
+{% endset %}
+
+{% import _self as menus %}
+
+<div class="m-menu-main">
+  {% macro menu_links(items, attributes, menu_level) %}
+  {% import _self as menus %}
+    {% if items %}
+      {% if menu_level == 0 %}
+        <ul{{ attributes.addClass('m-menu-main__list', 'm-menu-main__list--level-' ~ (menu_level + 1)) }}>
+      {% else %}
+        <ul class="m-menu-main__list m-menu-main__list--level-{{ menu_level + 1 }}">
+      {% endif %}
+      {% for item in items %}
+        <li{{ item.attributes.addClass('m-menu-main__item', item.below ? 'm-menu-main__item--has-menu' : []) }}>
+          {% set title %}
+            <span class="m-menu-main__link-content">
+              {{ item.title }}
+              {% if item.below and menu_level == 0 %}
+                {{ icon }}
+              {% endif %}
+            </span>
+          {% endset %}
+          {{ link(title, item.url, { 'class': ['m-menu-main__link', ]}) }}
+          {% if item.below %}
+            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  {% endmacro %}
+  {{ menus.menu_links(items, attributes, 0) }}
+</div>

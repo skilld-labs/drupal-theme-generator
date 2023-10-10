@@ -1,0 +1,13 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/o-local-tasks/o-local-tasks.src.css
+---
+.o-local-tasks {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 8px;
+  }
+}

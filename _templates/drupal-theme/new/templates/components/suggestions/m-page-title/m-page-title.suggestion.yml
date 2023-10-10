@@ -1,0 +1,7 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-page-title/m-page-title.suggestion.yml
+---
+m_page_title:
+  use: '@component/m-page-title/m-page-title.html.twig'
+  label: Molecule / Page title
+  base hook: 'page_title'

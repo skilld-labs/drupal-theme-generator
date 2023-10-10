@@ -1,0 +1,42 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/h-container/h-container.src.css
+---
+.h-container {
+  &--w-1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(1px, 1200px));
+    justify-content: center;
+  }
+
+  &--hp-1 {
+    padding-inline: 16px;
+
+    @media (--l) {
+      padding-inline: 40px;
+    }
+  }
+
+  &--vp-1 {
+    padding-block: 16px;
+
+    @media (--l) {
+      padding-block: 40px;
+    }
+  }
+
+  &--hm-1 {
+    margin-inline: 16px;
+
+    @media (--l) {
+      margin-inline: 40px;
+    }
+  }
+
+  &--vm-1 {
+    margin-block: 16px;
+
+    @media (--l) {
+      margin-block: 40px;
+    }
+  }
+}

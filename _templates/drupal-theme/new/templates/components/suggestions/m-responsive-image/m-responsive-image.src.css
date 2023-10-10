@@ -1,0 +1,7 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-responsive-image/m-responsive-image.src.css
+---
+.m-responsive-image img {
+  display: block;
+  width: 100%;
+}

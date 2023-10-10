@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/a-select/a-select.suggestion.yml
+---
+a_select:
+  use: '@component/a-select/a-select.html.twig'
+  label: Atoms / Select
+  base hook: 'select'
+  libraries:
+    - a-select:
+        css:
+          component:
+            a-select.css: {}

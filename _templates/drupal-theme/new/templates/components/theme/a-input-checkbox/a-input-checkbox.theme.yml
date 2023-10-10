@@ -1,0 +1,8 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-checkbox/a-input-checkbox.theme.yml
+---
+a_input_checkbox:
+  use: '@component/a-input-checkbox/a-input-checkbox.html.twig'
+  label: Atoms / Input checkbox
+  hook theme: 'input__checkbox'
+  base hook: 'input'

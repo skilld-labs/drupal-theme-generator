@@ -1,0 +1,8 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-radio/a-input-radio.src.css
+---
+.a-input-radio {
+  &__icon {
+    border-radius: 50%;
+  }
+}

@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/a-textarea/a-textarea.suggestion.yml
+---
+a_textarea:
+  use: '@component/a-textarea/a-textarea.html.twig'
+  label: Atoms / Textarea
+  base hook: 'textarea'
+  libraries:
+    - a-textarea:
+        css:
+          component:
+            a-textarea.css: {}

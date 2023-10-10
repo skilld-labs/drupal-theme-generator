@@ -1,0 +1,6 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/h-wrapper-as-link/h-wrapper-as-link.src.css
+---
+[wrapper-as-link-built] {
+  cursor: pointer;
+}

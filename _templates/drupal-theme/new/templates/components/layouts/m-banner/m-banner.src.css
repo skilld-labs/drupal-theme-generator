@@ -1,0 +1,15 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/m-banner/m-banner.src.css
+---
+.m-banner {
+  position: relative;
+
+  &__content {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: grid;
+    gap: 10px;
+    color: var(--color-white);
+  }
+}

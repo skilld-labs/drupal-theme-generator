@@ -1,0 +1,22 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-text-field/m-text-field.src.css
+---
+.m-text-field {
+  &__label {
+    margin-bottom: 20px;
+
+    @media (--l) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__item {
+    & > *:first-child {
+      margin-top: 0;
+    }
+
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-table/m-table.html.twig
+---
+<div class="m-table">
+  <table {{ attributes.addClass('m-table__table') }}>
+    {% if caption %}
+      <caption>{{ caption }}</caption>
+    {% endif %}
+    {% for colgroup in colgroups %}
+      {% if colgroup.cols %}
+        <colgroup{{ colgroup.attributes }}>
+          {% for col in colgroup.cols %}
+            <col{{ col.attributes }} />
+          {% endfor %}
+        </colgroup>
+      {% else %}
+        <colgroup{{ colgroup.attributes }} />
+      {% endif %}
+    {% endfor %}
+    {% if header %}
+      <thead>
+        <tr class="m-table__row">
+          {% for cell in header %}
+            <{{ cell.tag }} {{ cell.attributes.addClass('m-table__cell', 'm-table__cell--head') }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+    {% if rows %}
+      <tbody>
+      {% for row in rows %}
+        <tr {{ row.attributes.addClass('m-table__row') }}>
+          {% for cell in row.cells %}
+            <{{ cell.tag }} {{ cell.attributes.addClass('m-table__cell') }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+      </tbody>
+    {% elseif empty %}
+      <tbody>
+        <tr>
+          <td colspan="{{ header_columns }}">{{ empty }}</td>
+        </tr>
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot>
+      {% for row in footer %}
+        <tr {{ row.attributes }}>
+          {% for cell in row.cells %}
+            <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+              </{{ cell.tag }}>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tfoot>
+    {% endif %}
+  </table>
+</div>

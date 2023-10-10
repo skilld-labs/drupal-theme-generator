@@ -1,0 +1,14 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-slider-field/m-slider-field.src.css
+---
+@import '@splidejs/splide/css/core';
+
+.m-slider-field {
+  &__label {
+    margin-bottom: 20px;
+
+    @media (--l) {
+      margin-bottom: 32px;
+    }
+  }
+}

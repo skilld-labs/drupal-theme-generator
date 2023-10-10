@@ -1,0 +1,6 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-icon/a-icon.src.css
+---
+.a-icon {
+  fill: currentColor;
+}

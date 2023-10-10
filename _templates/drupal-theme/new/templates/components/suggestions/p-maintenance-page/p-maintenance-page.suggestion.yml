@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/p-maintenance-page/p-maintenance-page.suggestion.yml
+---
+p_maintenance_page:
+  use: '@component/p-maintenance-page/p-maintenance-page.html.twig'
+  label: Page / Maintenance page
+  base hook: 'maintenance_page'
+  libraries:
+    - p-maintenance-page:
+        css:
+          component:
+            p-maintenance-page.css: {}

@@ -1,0 +1,36 @@
+---
+to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/components/suggestions/m-responsive-image/config.groups.yml` : null %>"
+---
+# This is yml configuration where all responsive image groups should be defined
+# from the entire design system.
+#
+# For more information read config.styles.yml in a-image component.
+#
+# ~95% of all images on the web-site usually have image effect "scale and crop".
+# ~5% are about "scale". Sometimes these values can be different (like 60/40,
+# depending on the web-site of course, but still!).
+# ~0.000001% other cases have other image effects (or more than 1 image effect
+# per image). Usually it's focal-points image effects or something like this,
+# and we can ignore it in storybook, because we are using fake images for preview.
+#
+# Idea of this file is next:
+#   1. Prepare yml file with all responsive image groups described
+#   2. Then, backender can write some little script, which can grab all responsive
+#      image groups from here and generate configs for drupal automatically.
+#   3. It's a specification of all responsive image groups from design system,
+#      located in one place.
+#
+# The following examples are "default" - just to show you how you can use this
+# config file.
+machine_name_of_responsive_image_group_1:
+  label: Teaser
+  breakpoints:
+    l:
+      1x: 500_x_200_scale_and_crop
+      2x: 1000_x_400_scale_and_crop
+    xxs:
+      1x: 500_x_200_scale_and_crop
+  fallback: 500_x_200_scale_and_crop
+machine_name_of_responsive_image_group_2:
+  label: Banner
+  fallback: 500_x_200_scale_and_crop

@@ -1,0 +1,21 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-flex-field/m-flex-field.src.css
+---
+.m-flex-field {
+  &__label {
+    margin-bottom: 20px;
+
+    @media (--l) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+
+    .m-flex-field--g-1 & {
+      gap: 10px;
+    }
+  }
+}

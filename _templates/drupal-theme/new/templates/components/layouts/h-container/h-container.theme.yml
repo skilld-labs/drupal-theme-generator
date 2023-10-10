@@ -1,0 +1,48 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/h-container/h-container.theme.yml
+---
+h_container:
+  use: '@component/h-container/h-container.html.twig'
+  label: Layout / Container
+  hook theme: 'h_container'
+  base hook: 'layout'
+  fields:
+    content:
+      type: render
+      label: Content
+  settings:
+    width:
+      type: select
+      label: Width
+      default_value: default
+      options:
+        default: Auto width (Default)
+        w-1: Width 1
+    horizontal_padding:
+      type: select
+      label: Horizontal padding
+      default_value: default
+      options:
+        default: No horizontal padding
+        hp-1: Horizontal padding type 1
+    vertical_padding:
+      type: select
+      label: Vertical padding
+      default_Value: default
+      options:
+        default: No vertical padding
+        vp-1: Vertical padding type 1
+    horizontal_margin:
+      type: select
+      label: Horizontal margin
+      default_value: default
+      options:
+        default: No horizontal margin
+        hm-1: Horizontal margin type 1
+    vertical_margin:
+      type: select
+      label: Vertical margin
+      default_value: default
+      options:
+        default: No vertical margin
+        vm-1: Vertical margin type 1

@@ -1,0 +1,57 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/a-select/a-select.src.css
+---
+.a-select {
+  position: relative;
+
+  &__element {
+    width: 100%;
+    padding: 10px 44px 10px 16px;
+    cursor: pointer;
+    color: var(--color-black);
+    border: 1px solid var(--color-grey);
+    background-color: transparent;
+    font: inherit;
+    appearance: none;
+
+    &:focus {
+      border-color: var(--color-black);
+      outline: none;
+    }
+
+    &.error {
+      color: var(--color-danger);
+      border-color: currentColor;
+
+      & ~ .a-select__icon {
+        fill: var(--color-danger);
+      }
+    }
+
+    &[disabled],
+    &.is-disabled {
+      color: var(--color-grey-light);
+      border-color: currentColor;
+
+      & ~ .a-select__icon {
+        fill: var(--color-grey-light);
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    border-color: var(--color-black);
+
+    &--throbber {
+      & ~ .a-select__icon {
+        display: none;
+      }
+    }
+  }
+}

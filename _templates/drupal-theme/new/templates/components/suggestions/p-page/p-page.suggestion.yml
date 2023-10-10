@@ -1,0 +1,14 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/p-page/p-page.suggestion.yml
+---
+p_page:
+  use: '@component/p-page/p-page.html.twig'
+  label: Pages / Page
+  base hook: 'page'
+  libraries:
+    - p-page:
+        css:
+          component:
+            p-page.css: {}
+        js:
+          p-page.js: {}

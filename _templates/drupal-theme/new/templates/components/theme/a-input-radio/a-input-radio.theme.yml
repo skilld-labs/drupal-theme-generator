@@ -1,0 +1,13 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-radio/a-input-radio.theme.yml
+---
+a_input_radio:
+  use: '@component/a-input-radio/a-input-radio.html.twig'
+  label: Atoms / Input radio
+  hook theme: 'input__radio'
+  base hook: 'input'
+  libraries:
+    - a-input-radio:
+        css:
+          component:
+            a-input-radio.css: {}

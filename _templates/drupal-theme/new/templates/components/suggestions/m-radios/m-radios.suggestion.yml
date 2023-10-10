@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-radios/m-radios.suggestion.yml
+---
+m_radios:
+  use: '@component/m-radios/m-radios.html.twig'
+  label: Molecules / Radios
+  base hook: 'radios'
+  libraries:
+    - m-radios:
+        css:
+          component:
+            m-radios.css: {}

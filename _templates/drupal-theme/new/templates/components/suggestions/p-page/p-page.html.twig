@@ -1,0 +1,86 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/p-page/p-page.html.twig
+---
+<div {{ attributes.addClass('p-page') }}>
+  {% set skip_link_content %}
+    <span class="p-page__skip-link-content">{{ 'Skip to main content'|t }}</span>
+  {% endset %}
+  {% include '@component/a-text/a-text.html.twig' with {
+    attributes: create_attribute().addClass('p-page__skip-link'),
+    href: '#main-content',
+    content: skip_link_content,
+  } only %}
+  <div class="p-page__header-height"></div>
+  <header class="p-page__header" role="banner">
+    <div class="h-container h-container--w-1 h-container--hp-1 h-container--vp-1">
+      <div class="p-page__header-container">
+        {% if page.branding %}
+          <div class="p-page__branding">
+            {{ page.branding }}
+          </div>
+        {% endif %}
+        <div class="p-page__controls">
+          {% include '@component/a-button/a-button.html.twig' with {
+            attributes: create_attribute().addClass('p-page__control', 'p-page__control--menu-open'),
+            content: 'Open'|t,
+            trailing_icon: 'menu',
+            <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+          } only %}
+          {% include '@component/a-button/a-button.html.twig' with {
+            attributes: create_attribute().addClass('p-page__control', 'p-page__control--menu-close'),
+            content: 'Close'|t,
+            trailing_icon: 'close',
+            <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+          } only %}
+        </div>
+        {% if page.main_navigation %}
+          <div class="p-page__main-navigation">
+            {{ page.main_navigation }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+  <main id="main-content" class="p-page__content" role="main">
+    {% if page.system %}
+      <div class="p-page__system">
+        {% include '@component/h-container/h-container.html.twig' with {
+          attributes: create_attribute(),
+          width: 'w-1',
+          horizontal_padding: 'hp-1',
+          vertical_padding: 'vp-1',
+          content: page.system,
+        } only %}
+      </div>
+    {% endif %}
+    {% if page.breadcrumb %}
+      <div class="p-page__breadcrumb">
+        {% include '@component/h-container/h-container.html.twig' with {
+          attributes: create_attribute(),
+          width: 'w-1',
+          horizontal_padding: 'hp-1',
+          vertical_padding: 'vp-1',
+          content: page.breadcrumb,
+        } only %}
+      </div>
+    {% endif %}
+    {% if page.content %}
+      <div class="p-page__main-content">
+        {{ page.content }}
+      </div>
+    {% endif %}
+  </main>
+  <footer class="p-page__footer" role="contentinfo">
+    {% if page.copyright %}
+      <div class="p-page__copyright">
+        {% include '@component/h-container/h-container.html.twig' with {
+          attributes: create_attribute(),
+          width: 'w-1',
+          horizontal_padding: 'hp-1',
+          vertical_padding: 'vp-1',
+          content: page.copyright,
+        } only %}
+      </div>
+    {% endif %}
+  </footer>
+</div>

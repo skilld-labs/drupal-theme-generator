@@ -1,0 +1,60 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncategorized/a-throbber/a-throbber.src.css
+---
+.a-throbber {
+  &--fullscreen {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    animation: a-throbber-fullscreen var(--transition-duration-1)
+      var(--transition-timing-function-ease) infinite;
+    pointer-events: none;
+
+    @media (--m) {
+      height: 7px;
+    }
+  }
+
+  &--circle {
+    animation: a-throbber-circle var(--transition-duration-0-25) linear infinite;
+  }
+
+  &__line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 70%;
+    height: 100%;
+    margin-inline: auto;
+    content: '';
+    background-color: var(--color-black);
+
+    @media (--m) {
+      width: 50%;
+    }
+  }
+}
+
+@keyframes a-throbber-circle {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes a-throbber-fullscreen {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}

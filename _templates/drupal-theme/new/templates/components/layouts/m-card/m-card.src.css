@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/m-card/m-card.src.css
+---
+.m-card {
+  border: 1px solid var(--color-black);
+
+  &__content {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+  }
+}

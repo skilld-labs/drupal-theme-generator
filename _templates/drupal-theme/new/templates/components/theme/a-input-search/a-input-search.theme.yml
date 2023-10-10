@@ -1,0 +1,13 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-search/a-input-search.theme.yml
+---
+a_input_search:
+  use: '@component/a-input-search/a-input-search.html.twig'
+  label: Atoms / Input search
+  hook theme: 'input__search'
+  base hook: 'input'
+  libraries:
+    - a-input-search:
+        css:
+          component:
+            a-input-search.css: {}

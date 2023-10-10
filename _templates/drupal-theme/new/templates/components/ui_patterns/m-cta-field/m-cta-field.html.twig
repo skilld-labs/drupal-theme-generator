@@ -1,0 +1,34 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-cta-field/m-cta-field.html.twig
+---
+{% if item %}
+  {% set classes = [
+    'm-cta-field',
+  ] %}
+  <div {{ attributes.addClass(classes) }}>
+    {% if label %}
+      {% include '@component/a-text/a-text.html.twig' with {
+        attributes: create_attribute().addClass('m-cta-field__label'),
+        tag: label_tag,
+        type: label_type,
+        content: label,
+        custom_content: label_override,
+      } only %}
+    {% endif %}
+    {% if item %}
+      {% set content = item %}
+      {% if item_override %}
+        {% set content = item_override %}
+      {% endif %}
+      {% include '@component/a-link-button/a-link-button.html.twig' with {
+        attributes: cta_attributes.addClass('m-cta-field__item'),
+        trailing_icon: item_trailing_icon,
+        leading_icon: item_leading_icon,
+        type: item_type,
+        href: item_href,
+        content: content,
+        <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+      } only %}
+    {% endif %}
+  </div>
+{% endif %}

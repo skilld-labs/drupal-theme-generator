@@ -1,0 +1,20 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/css/toolbar.src.css
+---
+body[class*='toolbar'] {
+  /* prettier-ignore */
+  --toolbar-height: 39PX;
+}
+
+body[class*='toolbar'].toolbar-tray-open:not(.toolbar-vertical) {
+  /* prettier-ignore */
+  --toolbar-height: 79PX;
+}
+
+.toolbar-oriented .toolbar-bar {
+  position: fixed;
+}
+
+body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
+  margin-left: 0;
+}

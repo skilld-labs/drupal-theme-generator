@@ -1,0 +1,14 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/h-container/h-container.html.twig
+---
+{% set classes = [
+  'h-container',
+  width and width != 'default' ? 'h-container--' ~ width : [],
+  horizontal_padding and horizontal_padding != 'default' ? 'h-container--' ~ horizontal_padding : [],
+  vertical_padding and vertical_padding != 'default' ? 'h-container--' ~ vertical_padding : [],
+  horizontal_margin and horizontal_margin != 'default' ? 'h-container--' ~ horizontal_margin : [],
+  vertical_margin and vertical_margin != 'default' ? 'h-container--' ~ vertical_margin : [],
+] %}
+<div {{ attributes.addClass(classes) }}>
+  {{- content -}}
+</div>

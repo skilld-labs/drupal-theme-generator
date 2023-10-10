@@ -1,0 +1,10 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/.eslintignore
+---
+js/**/*.js
+!js/**/*.src.js
+node_modules
+templates/components/**/*.js
+!templates/components/**/*.src.js
+vendor
+storybook-static

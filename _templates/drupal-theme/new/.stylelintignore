@@ -1,0 +1,6 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/.stylelintignore
+---
+node_modules
+vendor
+storybook-static

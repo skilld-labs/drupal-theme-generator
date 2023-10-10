@@ -1,0 +1,95 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-cta-field/m-cta-field.ui_patterns.yml
+---
+m_cta_field:
+  use: '@component/m-cta-field/m-cta-field.html.twig'
+  label: Molecule / CTA field
+  fields:
+    label:
+      label: Label
+    item:
+      label: Item content
+    item_href:
+      label: Item href
+  settings:
+    label_override:
+      type: textfield
+      label: Label custom content
+    label_type:
+      type: select
+      label: Label type
+      default_value: regular
+      options:
+        h1: Heading 1
+        h2: Heading 2
+        h3: Heading 3
+        h4: Heading 4
+        h5: Heading 5
+        h6: Heading 6
+        regular: Regular
+        small: Small
+    label_tag:
+      type: select
+      label: Label tag
+      default_value: div
+      options:
+        div: div
+        h1: h1
+        h2: h2
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
+        span: span
+    item_override:
+      type: textfield
+      label: CTA custom content
+    item_type:
+      type: select
+      label: CTA type
+      default_value: default
+      options:
+        default: Default
+        second: Two
+    item_leading_icon:
+      type: select
+      label: CTA Leading icon name
+      default_value: default
+      options:
+        default: No icon
+        checkbox-empty: Checkbox empty
+        checkbox-filled: Checkbox filled
+        chevron: Chevron
+        chevron-end: Chevron end
+        close: Close
+        menu: Menu
+        radio-empty: Radio empty
+        radio-filled: Radio filled
+        search: Search
+        throbber-circle: Throbber circle
+        warning: Warning
+    item_trailing_icon:
+      type: select
+      label: CTA Trailing icon name
+      default_value: default
+      options:
+        default: No icon
+        checkbox-empty: Checkbox empty
+        checkbox-filled: Checkbox filled
+        chevron: Chevron
+        chevron-end: Chevron end
+        close: Close
+        menu: Menu
+        radio-empty: Radio empty
+        radio-filled: Radio filled
+        search: Search
+        throbber-circle: Throbber circle
+        warning: Warning
+    cta_attributes:
+      type: attributes
+      label: Item attributes
+  libraries:
+    - m-cta-field:
+        css:
+          component:
+            m-cta-field.css: {}

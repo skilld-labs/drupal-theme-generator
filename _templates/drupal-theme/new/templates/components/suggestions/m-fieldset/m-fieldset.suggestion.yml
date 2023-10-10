@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-fieldset/m-fieldset.suggestion.yml
+---
+m_fieldset:
+  use: '@component/m-fieldset/m-fieldset.html.twig'
+  label: Molecules / Fieldset
+  base hook: 'fieldset'
+  libraries:
+    - m-fieldset:
+        css:
+          component:
+            m-fieldset.css: {}

@@ -1,0 +1,17 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-checkbox/a-input-checkbox.html.twig
+---
+<div class="a-input-checkbox h-boolean">
+  <input {{ attributes.addClass('h-boolean__element') }}/>
+  {% include '@component/a-icon/a-icon.html.twig' with {
+    attributes: create_attribute().addClass('h-boolean__icon', 'h-boolean__icon--empty'),
+    icon: 'checkbox-empty',
+    <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+  } only %}
+  {% include '@component/a-icon/a-icon.html.twig' with {
+    attributes: create_attribute().addClass('h-boolean__icon', 'h-boolean__icon--filled'),
+    icon: 'checkbox-filled',
+    <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+  } only %}
+  {{- children }}
+</div>

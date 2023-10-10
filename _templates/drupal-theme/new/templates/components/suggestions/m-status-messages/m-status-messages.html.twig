@@ -1,0 +1,55 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-status-messages/m-status-messages.html.twig
+---
+<div data-drupal-messages>
+  {% for type, messages in message_list %}
+    {% set classes = [
+      'm-status-messages',
+      'm-status-messages--' ~ type,
+    ] %}
+    <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes.addClass(classes)|without('role', 'aria-label') }}>
+      {% if type == 'status' %}
+        {% set icon = 'checkbox-filled' %}
+      {% elseif type == 'warning' %}
+        {% set icon = 'warning' %}
+      {% elseif type == 'error' %}
+        {% set icon = 'close' %}
+      {% endif %}
+      {% if icon %}
+        {% include '@component/a-icon/a-icon.html.twig' with {
+          attributes: create_attribute().addClass('m-status-messages__icon'),
+          icon: icon,
+          <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+        } only %}
+      {% endif %}
+      <div class="m-status-messages__content">
+        {% if type == 'error' %}
+          <div role="alert">
+        {% endif %}
+        {% if status_headings[type] %}
+          <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
+        {% endif %}
+        {% if messages|length > 1 %}
+          <ul class="m-status-messages__list">
+            {% for message in messages %}
+              <li class="m-status-messages__item">
+                {% include '@component/a-text/a-text.html.twig' with {
+                  attributes: create_attribute(),
+                  content: message,
+                } %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          {% include '@component/a-text/a-text.html.twig' with {
+            attributes: create_attribute(),
+            content: messages|first,
+          } %}
+        {% endif %}
+        {% if type == 'error' %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

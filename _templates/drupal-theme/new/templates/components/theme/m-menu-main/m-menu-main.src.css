@@ -1,0 +1,87 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/m-menu-main/m-menu-main.src.css
+---
+.m-menu-main {
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &--level-1 {
+      display: grid;
+      gap: 8px;
+
+      @media (--l) {
+        display: flex;
+        gap: 20px;
+      }
+    }
+
+    &--level-2 {
+      display: none;
+      background-color: var(--color-white);
+
+      @media (--l) {
+        position: absolute;
+        z-index: 40;
+        top: 100%;
+        left: 0;
+        width: 300px;
+        padding: 10px;
+      }
+
+      .m-menu-main__list--level-1 > .m-menu-main__item:hover > & {
+        @media (hover: hover) {
+          display: block;
+        }
+      }
+
+      .m-menu-main__list--level-1 > .m-menu-main__item--active > & {
+        display: block;
+      }
+    }
+
+    &--level-3 {
+      padding-left: 20px;
+    }
+  }
+
+  &__item {
+    &--has-menu {
+      position: relative;
+    }
+  }
+
+  &__link {
+    display: inline-flex;
+    padding: 10px;
+    text-decoration: none;
+    color: var(--color-dark-grey);
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--color-black);
+    }
+
+    .m-menu-main__list--level-1 > .m-menu-main__item:hover > & {
+      @media (hover: hover) {
+        color: var(--color-black);
+      }
+    }
+
+    .m-menu-main__list--level-1 > .m-menu-main__item--active > & {
+      color: var(--color-black);
+    }
+  }
+
+  &__link-content {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+  }
+}

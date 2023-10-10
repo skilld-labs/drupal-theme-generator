@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-breadcrumb/m-breadcrumb.suggestion.yml
+---
+m_breadcrumb:
+  use: '@component/m-breadcrumb/m-breadcrumb.html.twig'
+  label: Molecules / Breadcrumb
+  base hook: 'breadcrumb'
+  libraries:
+    - m-breadcrumb:
+        css:
+          component:
+            m-breadcrumb.css: {}

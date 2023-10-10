@@ -1,0 +1,66 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-pager/m-pager.src.css
+---
+.m-pager {
+  display: flex;
+  gap: 4px;
+
+  &__pages {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 2px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    color: var(--color-dark-grey);
+
+    &--inactive {
+      cursor: not-allowed;
+      color: var(--color-grey-light);
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 2px;
+
+    &:hover,
+    &--current {
+      color: var(--color-black);
+    }
+  }
+
+  &__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__icon {
+    width: 13px;
+    height: 12px;
+    transform: rotate(90deg);
+    fill: currentColor;
+
+    .m-pager__item--next &,
+    .m-pager__item--last & {
+      transform: rotate(-90deg);
+    }
+  }
+}

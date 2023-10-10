@@ -1,0 +1,25 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/o-branding/o-branding.src.css
+---
+.o-branding {
+  display: flex;
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &__image {
+    width: 80px;
+
+    @media (--l) {
+      width: 100px;
+    }
+  }
+
+  &__text {
+    padding-left: 10px;
+  }
+}

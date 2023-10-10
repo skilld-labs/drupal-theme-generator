@@ -1,0 +1,16 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/p-maintenance-page/p-maintenance-page.html.twig
+---
+<div class="p-maintenance-page">
+  <main class="p-maintenance-page__content" role="main">
+    {% if logo %}
+      <h1>
+        <span class="visually-hidden">{{ site_name }}</span>
+        <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
+          <img src="{{ logo }}" alt="{{ 'Home'|t }}"/>
+        </a>
+      </h1>
+    {% endif %}
+    <div class="a-text a-text--h4">{{ page.content }}</div>
+  </main>
+</div>

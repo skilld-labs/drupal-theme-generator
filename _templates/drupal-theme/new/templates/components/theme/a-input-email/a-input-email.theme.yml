@@ -1,0 +1,8 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-email/a-input-email.theme.yml
+---
+a_input_email:
+  use: '@component/a-input-email/a-input-email.html.twig'
+  label: Atoms / Input email
+  hook theme: 'input__email'
+  base hook: 'input'

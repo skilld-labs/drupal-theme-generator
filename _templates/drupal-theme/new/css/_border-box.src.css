@@ -1,0 +1,9 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/css/_border-box.src.css
+---
+html,
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

@@ -1,0 +1,39 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-submit/a-input-submit.html.twig
+---
+{% set classes = [
+  'a-input-submit',
+  'h-button',
+  type and type != 'default' ? 'h-button--' ~ type : [],
+] %}
+{% set content = attributes.value %}
+{% if value %}
+  {% set attributes = attributes.setAttribute('value', value) %}
+  {% set content = value %}
+{% endif %}
+<button {{ attributes.addClass(classes) }}>
+  {% if leading_icon and leading_icon != 'default' %}
+    <span class="h-button__icon-container h-button__icon-container--start">
+      {% include '@component/a-icon/a-icon.html.twig' with {
+        attributes: create_attribute().addClass('h-button__icon'),
+        icon: leading_icon,
+        <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+      } only %}
+    </span>
+  {% endif %}
+  {% include '@component/a-text/a-text.html.twig' with {
+    attributes: create_attribute().addClass('h-button__text'),
+    tag: 'span',
+    type: 'small',
+    content: content,
+  } only %}
+  {% if trailing_icon and trailing_icon != 'default' %}
+    <span class="h-button__icon-container h-button__icon-container--end">
+     {% include '@component/a-icon/a-icon.html.twig' with {
+       attributes: create_attribute().addClass('h-button__icon'),
+       icon: trailing_icon,
+       <%= h.changeCase.lower(name) %>_svg_sprite: <%= h.changeCase.lower(name) %>_svg_sprite,
+     } only %}
+   </span>
+  {% endif %}
+</button>

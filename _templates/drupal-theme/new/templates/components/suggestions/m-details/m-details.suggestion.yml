@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-details/m-details.suggestion.yml
+---
+m_details:
+  use: '@component/m-details/m-details.html.twig'
+  label: Molecules / Details
+  base hook: 'details'
+  libraries:
+    - m-details:
+        css:
+          component:
+            m-details.css: {}

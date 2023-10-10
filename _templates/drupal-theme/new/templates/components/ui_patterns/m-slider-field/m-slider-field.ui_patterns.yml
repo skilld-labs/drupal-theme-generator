@@ -1,0 +1,92 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-slider-field/m-slider-field.ui_patterns.yml
+---
+m_slider_field:
+  use: '@component/m-slider-field/m-slider-field.html.twig'
+  label: Molecule / Slider field
+  fields:
+    label:
+      label: Label
+    items:
+      label: Items
+  settings:
+    type:
+      type: select
+      label: Slider type
+      default_value: type-1
+      options:
+        type-1: Type 1
+        type-2: Type 2
+    label_override:
+      type: textfield
+      label: Label custom content
+    label_type:
+      type: select
+      label: Label type
+      default_value: regular
+      options:
+        h1: Heading 1
+        h2: Heading 2
+        h3: Heading 3
+        h4: Heading 4
+        h5: Heading 5
+        h6: Heading 6
+        regular: Regular
+        small: Small
+    label_tag:
+      type: select
+      label: Label tag
+      default_value: div
+      options:
+        div: div
+        h1: h1
+        h2: h2
+        h3: h3
+        h4: h4
+        h5: h5
+        h6: h6
+    container:
+      type: boolean
+      label: Container apply
+    container_width:
+      type: select
+      label: Container width
+      default_value: default
+      options:
+        default: Auto width (Default)
+        w-1: Width 1
+    container_horizontal_padding:
+      type: select
+      label: Container horizontal padding
+      default_value: default
+      options:
+        default: No horizontal padding
+        hp-1: Horizontal padding type 1
+    container_vertical_padding:
+      type: select
+      label: Container vertical padding
+      default_Value: default
+      options:
+        default: No vertical padding
+        vp-1: Vertical padding type 1
+    container_horizontal_margin:
+      type: select
+      label: Container horizontal margin
+      default_value: default
+      options:
+        default: No horizontal margin
+        hm-1: Horizontal margin type 1
+    container_vertical_margin:
+      type: select
+      label: Container vertical margin
+      default_value: default
+      options:
+        default: No vertical margin
+        vm-1: Vertical margin type 1
+  libraries:
+    - m-slider-field:
+        css:
+          component:
+            m-slider-field.css: {}
+        js:
+          m-slider-field.js: {}

@@ -1,0 +1,30 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/m-card/m-card.html.twig
+---
+{% if clickable %}
+  {% set attributes = attributes.setAttribute('wrapper-as-link-container', '') %}
+{% endif %}
+<div {{ attributes.addClass('m-card') }}>
+  {% if image %}
+    <div class="m-card__image">
+      {{ image }}
+    </div>
+  {% endif %}
+  <div class="m-card__content">
+    {% if title %}
+      <div class="m-card__title">
+        {{ title }}
+      </div>
+    {% endif %}
+    {% if body %}
+      <div class="m-card__body">
+        {{ body }}
+      </div>
+    {% endif %}
+    {% if cta %}
+      <div class="m-card__cta">
+        {{ cta }}
+      </div>
+    {% endif %}
+  </div>
+</div>

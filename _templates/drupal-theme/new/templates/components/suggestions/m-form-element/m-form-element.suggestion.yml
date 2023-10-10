@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-form-element/m-form-element.suggestion.yml
+---
+m_form_element:
+  use: '@component/m-form-element/m-form-element.html.twig'
+  label: Molecules / Form element
+  base hook: 'form_element'
+  libraries:
+    - m-form-element:
+        css:
+          component:
+            m-form-element.css: {}

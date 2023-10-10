@@ -1,0 +1,7 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-text/a-input-text.html.twig
+---
+<div {{ create_attribute().addClass('a-input-text', 'h-text-input') }}>
+  <input{{ attributes.addClass('h-text-input__element') }} />
+  {{- children }}
+</div>

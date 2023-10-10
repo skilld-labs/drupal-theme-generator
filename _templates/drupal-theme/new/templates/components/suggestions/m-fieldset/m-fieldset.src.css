@@ -1,0 +1,18 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-fieldset/m-fieldset.src.css
+---
+.m-fieldset {
+  margin: 0;
+  border: 0;
+
+  &__title {
+    display: contents;
+    float: left;
+    width: 100%;
+    padding: 0;
+  }
+
+  &__content {
+    padding-top: 16px;
+  }
+}

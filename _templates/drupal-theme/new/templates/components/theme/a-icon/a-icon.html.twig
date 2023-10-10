@@ -1,0 +1,10 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-icon/a-icon.html.twig
+---
+{% set classes = [
+  'a-icon',
+  'a-icon--' ~ icon,
+] %}
+<svg {{ attributes.addClass(classes).setAttribute('aria-hidden', 'true') }}>
+  <use xlink:href="{{ <%= h.changeCase.lower(name) %>_svg_sprite }}#svg-{{ icon }}"></use>
+</svg>

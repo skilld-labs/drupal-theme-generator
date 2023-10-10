@@ -1,0 +1,17 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-text/a-text.html.twig
+---
+{% set classes = [
+  'a-text',
+  type ? 'a-text--' ~ type : [],
+] %}
+{% if custom_content %}
+  {% set content = custom_content %}
+{% endif %}
+{% if href %}
+  {% set tag = 'a' %}
+  {% set attributes = attributes.setAttribute('href', href) %}
+{% endif %}
+<{{ tag|default('div') }}{{ attributes.addClass(classes) }}>
+  {{- content -}}
+</{{ tag|default('div') }}>

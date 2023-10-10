@@ -1,0 +1,18 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-responsive-image/m-responsive-image.html.twig
+---
+{% if output_image_tag %}
+  {{ img_element }}
+{% else %}
+  {% if not picture_attributes %}
+    {% set picture_attributes = create_attribute() %}
+  {% endif %}
+  <picture {{ picture_attributes.addClass('m-responsive-image') }}>
+    {% if sources %}
+      {% for source_attributes in sources %}
+        <source {{ source_attributes }}/>
+      {% endfor %}
+    {% endif %}
+    {{ img_element }}
+  </picture>
+{% endif %}

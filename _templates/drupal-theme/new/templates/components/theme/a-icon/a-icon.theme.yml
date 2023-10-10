@@ -1,0 +1,32 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-icon/a-icon.theme.yml
+---
+a_icon:
+  use: '@component/a-icon/a-icon.html.twig'
+  label: Atoms / Icon
+  hook theme: 'a_icon'
+  fields:
+    icon:
+      label: Icon
+  settings:
+    icon:
+      type: select
+      label: Icon name
+      default_value: checkbox-empty
+      options:
+        checkbox-empty: Checkbox empty
+        checkbox-filled: Checkbox filled
+        chevron: Chevron
+        chevron-end: Chevron end
+        close: Close
+        menu: Menu
+        radio-empty: Radio empty
+        radio-filled: Radio filled
+        search: Search
+        throbber-circle: Throbber circle
+        warning: Warning
+  libraries:
+    - a-icon:
+        css:
+          component:
+            a-icon.css: {}

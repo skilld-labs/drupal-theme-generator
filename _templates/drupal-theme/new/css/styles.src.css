@@ -1,0 +1,8 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/css/styles.src.css
+---
+@import './_border-box.src.css';
+@import './_fonts.src.css';
+@import './_normalize.src.css';
+@import './_root.src.css';
+@import './_variables.src.css';

@@ -1,0 +1,12 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-cta-field/m-cta-field.src.css
+---
+.m-cta-field {
+  &__label {
+    margin-bottom: 12px;
+
+    @media (--l) {
+      margin-bottom: 8px;
+    }
+  }
+}

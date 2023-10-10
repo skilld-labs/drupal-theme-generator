@@ -1,0 +1,24 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patterns/m-grid-field/m-grid-field.src.css
+---
+.m-grid-field {
+  &__label {
+    margin-bottom: 20px;
+
+    @media (--l) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__items {
+    display: grid;
+
+    .m-grid-field--type-1 & {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .m-grid-field--g-1 & {
+      gap: 10px;
+    }
+  }
+}

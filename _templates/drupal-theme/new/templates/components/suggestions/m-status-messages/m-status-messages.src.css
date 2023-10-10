@@ -1,0 +1,49 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-status-messages/m-status-messages.src.css
+---
+.m-status-messages {
+  --m-status-messages-background-color: var(--color-grey-light);
+  --m-status-messages-text-color: var(--color-black);
+  --outline-color: var(--m-status-messages-text-color);
+
+  display: flex;
+  padding: 8px 16px;
+  color: var(--m-status-messages-text-color);
+  background-color: var(--m-status-messages-background-color);
+  gap: 16px;
+
+  &--status {
+    --m-status-messages-background-color: var(--color-success);
+  }
+
+  &--warning {
+    --m-status-messages-background-color: var(--color-warning);
+  }
+
+  &--error {
+    --m-status-messages-background-color: var(--color-danger);
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  &__content {
+    flex-grow: 1;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  &__list {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 8px;
+  }
+}

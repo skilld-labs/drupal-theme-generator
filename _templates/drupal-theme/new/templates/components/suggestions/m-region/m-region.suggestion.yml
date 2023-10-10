@@ -1,0 +1,7 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/m-region/m-region.suggestion.yml
+---
+m_region:
+  use: '@component/m-region/m-region.html.twig'
+  label: Molecules / Region
+  base hook: 'region'

@@ -1,0 +1,31 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggestions/p-maintenance-page/p-maintenance-page.src.css
+---
+.p-maintenance-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--viewport-height);
+  padding: 16px;
+  text-align: center;
+  color: var(--color-grey-white);
+  background-color: var(--color-grey-black);
+
+  h1 {
+    margin: 0;
+
+    a {
+      display: inline-flex;
+    }
+  }
+
+  &__content {
+    display: grid;
+    gap: 16px;
+    max-width: 420px;
+  }
+
+  img {
+    width: 150px;
+  }
+}

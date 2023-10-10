@@ -1,0 +1,26 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/m-card/m-card.theme.yml
+---
+m_card:
+  use: '@component/m-card/m-card.html.twig'
+  label: Layouts / Card
+  hook theme: 'm_card'
+  base hook: 'layout'
+  fields:
+    image:
+      label: Image
+    title:
+      label: Title
+    body:
+      label: Body
+    cta:
+      label: CTA
+  settings:
+    clickable:
+      type: boolean
+      label: Make a whole card clickable
+  libraries:
+    - m-card:
+        css:
+          component:
+            m-card.css: {}

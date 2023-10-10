@@ -1,0 +1,50 @@
+---
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/theme/a-input-submit/a-input-submit.theme.yml
+---
+a_input_submit:
+  use: '@component/a-input-submit/a-input-submit.html.twig'
+  label: Atoms / Input submit
+  hook theme: 'input__submit'
+  base hook: 'input'
+  settings:
+    type:
+      type: select
+      label: Type
+      default_value: default
+      options:
+        default: Default
+        second: Second
+    leading_icon:
+      type: select
+      label: Leading icon name
+      default_value: default
+      options:
+        default: No icon
+        checkbox-empty: Checkbox empty
+        checkbox-filled: Checkbox filled
+        chevron: Chevron
+        chevron-end: Chevron end
+        close: Close
+        menu: Menu
+        radio-empty: Radio empty
+        radio-filled: Radio filled
+        search: Search
+        throbber-circle: Throbber circle
+        warning: Warning
+    trailing_icon:
+      type: select
+      label: Trailing icon name
+      default_value: default
+      options:
+        default: No icon
+        checkbox-empty: Checkbox empty
+        checkbox-filled: Checkbox filled
+        chevron: Chevron
+        chevron-end: Chevron end
+        close: Close
+        menu: Menu
+        radio-empty: Radio empty
+        radio-filled: Radio filled
+        search: Search
+        throbber-circle: Throbber circle
+        warning: Warning
