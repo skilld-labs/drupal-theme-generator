@@ -2087,10 +2087,10 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/yarn.lock` : nu
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.27.8.tgz#6667fac16c436b5434a387a34dedb013198f6e6e"
   integrity sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==
 
-"@skilld/drupal-component-generator@^0.0.2-alpha.5":
-  version "0.0.2-alpha.5"
-  resolved "https://registry.yarnpkg.com/@skilld/kaizer-component-generator/-/kaizer-component-generator-0.0.2-alpha.5.tgz#2d1bacb38356d9f23111687c7ab078b6d8b4a50e"
-  integrity sha512-2ESmVKvvMyJyh/skEJRMs9V/VbS3BDGv0eu1qA+/77V7ldwt/3L29gipnv3n2sWhGxKc2lRWnzFwSKByE5+TLg==
+"@skilld/drupal-component-generator@^1":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@skilld/drupal-component-generator/-/drupal-component-generator-1.0.6.tgz#713f7861e9d3f593e65340d5751b8903ca85176e"
+  integrity sha512-E2PbH6klpMWWwlNoYm59BQOOzSyQFK5rXc5Xmi3EpB7/qW9EOAeXZ+4RVrCumF03+m2UNQNKCg7iTKBfyNn60g==
   dependencies:
     glob "^10.3.3"
     hygen "^6.2.11"
