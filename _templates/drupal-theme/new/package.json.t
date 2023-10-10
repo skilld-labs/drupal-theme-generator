@@ -15,7 +15,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
     "@faker-js/faker": "^7.6.0",
     "@originjs/vite-plugin-content": "^1.0.3",
 <% } -%>
-    "@skilld/drupal-component-generator": "^0.0.1-alpha",
+    "@skilld/drupal-component-generator": "^1",
 <% if (has_storybook) { -%>
     "@storybook/addon-essentials": "^7",
     "@storybook/addon-interactions": "^7",

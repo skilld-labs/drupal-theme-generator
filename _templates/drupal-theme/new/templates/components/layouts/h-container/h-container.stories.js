@@ -10,7 +10,7 @@ import {
 } from '@story-handler';
 
 export default {
-  title: 'Layouts / Container',
+  title: 'Helpers / Container',
   parameters: {
     layout: 'fullscreen',
     // backgrounds: { default: 'grey' },

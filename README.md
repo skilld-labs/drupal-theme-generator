@@ -1,18 +1,25 @@
-# [ECOSYSTEM_NAME] Theme generator
-
-<img src="https://raw.githubusercontent.com/skilld-labs/kaizer/images/images/1.png?raw=true" width="350"/>
-
-This is a part of [ECOSYSTEM_NAME](some_link) initiative and this package will help you to generate your custom theme for 
-[Drupal](https://www.drupal.org/).
+<p align="center">
+  <a href="https://skilld.cloud/" target="_blank">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/logo/dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/logo/light.svg">
+      <img alt="Logo" src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/logo/light.svg" width="360" height="108" style="max-width: 100%;">
+    </picture>
+  </a>
+</p>
+<p align="center">
+  This theme generator was inspired by <a href="https://www.drupal.org/project/component_connector">Component connector</a> initiative. 
+  It will help you to generate your custom theme for <a href="https://www.drupal.org/">Drupal</a>
+</p>
 
 #### Navigation
-- [About [ECOSYSTEM_NAME] initiative](#about-ecosystem_name-initiative)
+- [About component connector initiative](#about-component-connector-initiative)
 - - [What we actually call a component](#what-we-actually-call-a-component)
 - - [Ways of components delivering in drupal today](#ways-of-components-delivering-in-drupal-today)
 - - [Our native integration](#our-native-integration)
 - - [What's the benefits](#whats-the-benefits)
 - [Features generated theme will have](#features-generated-theme-will-have)
-- [Installation of ECOSYSTEM_NAME theme generator](#installation-of-ecosystem_name-theme-generator)
+- [Installation](#installation)
 - [Explanation of generated theme](#explanation-of-generated-theme)
 - - [Purposes of generated theme](#purposes-of-generated-theme)
 - - [Structure of generated theme](#structure-of-generated-theme)
@@ -45,7 +52,7 @@ This is a part of [ECOSYSTEM_NAME](some_link) initiative and this package will h
 - [Debug in Drupal](#debug-in-drupal)
 - [License](#license)
 
-## About ECOSYSTEM_NAME initiative
+## About component connector initiative
 
 The process of delivering components in Drupal is not so easy thing. Drupal 
 is having own [Render API](https://www.drupal.org/docs/drupal-apis/render-api) which is a bit out of component approach. However, component approach
@@ -125,7 +132,7 @@ and configuration of them via admin back-office.
 ### Our native integration
                 
 We wanted to get rid of all the extra layers to connect components in Drupal and stay native and flexible
-at the same time. You have to [check this](some_link) about our integration before reading on.
+at the same time. You have to [check this](https://git.drupalcode.org/project/component_connector) about our integration before reading on.
 
 ### What's the benefits
 
@@ -161,7 +168,7 @@ Also many other very helpful features: [read below](#features-generated-theme-wi
 
 4. Powerful and modern tools: vite, storybook - everything to make your life easier and development process faster.
 
-5. Faster creation of new components, thanks to [Component generator](https://www.npmjs.com/package/@skilld/kaizer-component-generator).
+5. Faster creation of new components, thanks to [Component generator](https://www.npmjs.com/package/@skilld/drupal-component-generator).
 
 How to use `Component generator` is described [below](#how-to-create-new-component).
 
@@ -173,14 +180,14 @@ How to use `Component generator` is described [below](#how-to-create-new-compone
 - Drupal's breakpoints in CSS and JS. [Read more](#drupals-breakpoints-in-css-and-js)
 - Rems everywhere. Write your source css styles in pixels, but on the `build` task it will be converted to `rems` automatically.
 - [Storybook](https://storybook.js.org/docs/react/builders/vite) v7.0
-- [ECOSYSTEM_NAME] component generator - [learn more](https://www.npmjs.com/package/@skilld/kaizer-component-generator)
+- Drupal component generator - [learn more](https://www.npmjs.com/package/@skilld/drupal-component-generator)
 - Linting and auto-fixer of CSS, JS, YML files using Stylelint, Eslint and Prettier
 - SVG sprite generator and optimizer of SVG assets. [Why SVG sprite technology](#why-svg-sprite-technology)
 - [Favicon generator](https://www.npmjs.com/package/cli-real-favicon). Check [below](#how-to-generate-favicon) how to use favicon generator.
 - Integration with [Color](https://www.drupal.org/project/color) module to be able to customize palette of colours on your web-site through admin back office.
 - Multiple base components pre-installed in theme with minimal styles and scripts.
 
-## Installation of [ECOSYSTEM_NAME] theme generator
+## Installation
 
 Our plans are to create contrib starterkit theme and put it on drupal.org, so you will be able 
 to generate sub-theme using 
@@ -188,8 +195,8 @@ to generate sub-theme using
 or drush. However these functionalities aren't done yet.
 
 But already today you can generate your new drupal theme with our generator using:
-1. `npx @skilld/kaizer-theme-generator`
-2. or via docker - `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node:lts-alpine npx @skilld/kaizer-theme-generator`
+1. `npx @skilld/drupal-theme-generator`
+2. or via docker - `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node:lts-alpine npx @skilld/drupal-theme-generator`
 
 After execution of one of those commands - just follow instructions in console.
 
@@ -204,9 +211,9 @@ You have to install and enable the following Drupal modules before enabling gene
 - [UI patterns](https://www.drupal.org/project/ui_patterns)
 - [UI Patterns Field Formatters](https://www.drupal.org/project/ui_patterns_field_formatters)
 - [Components](https://www.drupal.org/project/components)
-- [Component connector](https://www.drupal.org/sandbox/gaydabura/3361207)
+- [Component connector](https://www.drupal.org/project/component_connector)
 
-However if you don't want/need to get full experience of usage of our [ECOSYSTEM_NAME] initiative and want
+However if you don't want/need to get full experience of usage of our component connector initiative and want
 just to try theme as it is - you can remove all `dependencies` from `your_theme.info.yml` file except of
 `components:components` and just enable the theme in Drupal.
 
@@ -221,7 +228,7 @@ of project can be defined only with communication between all involved persons -
 back-end and front-end developers, all together. That means when front-end developer want to create one or another component - he
 should think first how this component will be integrated in Drupal - as a `theme`, `layout`, `suggestion` or `ui_patterns`
 way. If front-end developer sure its `my-selectbox` component should be applied to core theme hook `select` - there is
-no problem with it, so front-end developer can just move its component into `suggestions` folder ([Read again about our integration](some_link)
+no problem with it, so front-end developer can just move its component into `suggestions` folder ([Read again about our integration](https://git.drupalcode.org/project/component_connector)
 if you don't clearly understand why `suggestions` folder). But if front-end developer can't guess what this component
 will be in Drupal - a component should be placed in `uncategorized` folder and wait for its usage. When back-end developer will 
 start to work on this subject - he can decide how component can be integrated in Drupal and move it from `uncategorized` folder 
@@ -253,7 +260,7 @@ And `components/` folder for storing components required by our integration.
 Run `yarn cc` or via docker `make cc`
 and follow instructions in console.
 
-New component will be added in `templates/components/**` folder. Read more about [ECOSYSTEM_NAME component generator](https://www.npmjs.com/package/@skilld/kaizer-component-generator).
+New component will be added in `templates/components/**` folder. Read more about [component generator](https://www.npmjs.com/package/@skilld/drupal-component-generator).
 
 ## How to compile styles and scripts
 
@@ -448,11 +455,11 @@ Every component folder contains several files inside:
 - `.stories.js` - for storybook needs. Initially such files contains everything you will need for preview any component in storybook. If you don't want
 to support storybook on your project - you can just ignore this file.
 - `.html.twig` - twig of component. By the way `attributes` variable is always available in any component by default in Storybook. Other fields and settings you can declare in `.yml` file or describe them in `.stories.js`
-- `.yml` - configuration of component. [Read more](https://www.npmjs.com/package/@skilld/kaizer-component-generator) about how to write `yml` files and also explanation of every file inside component.
+- `.yml` - configuration of component. [Read more](https://www.npmjs.com/package/@skilld/drupal-component-generator) about how to write `yml` files and also explanation of every file inside component.
 
-<img src="https://raw.githubusercontent.com/skilld-labs/kaizer/images/images/5.png?raw=true" width="200"/>
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/5.png?raw=true" width="200"/>
 
-Also here is the [link](https://www.npmjs.com/package/@skilld/kaizer-component-generator) to our [ECOSYSTEM_NAME] component generator
+Also here is the [link](https://www.npmjs.com/package/@skilld/drupal-component-generator) to our component generator
 where you can find more information about every file in component.
 
 ### Principle of building components
@@ -484,7 +491,7 @@ in Storybook. So if you need to call your component somewhere in twig, you can j
 You can find several examples of such usage in pre-defined components.
 
 If component was moved from one folder to another - normally
-all you have to do is to change `yml` file only. [Read more]() about how `yml` file should be organized.
+all you have to do is to change `yml` file only. [Read more](https://git.drupalcode.org/project/component_connector) about how `yml` file should be organized.
 
 ### Pre-defined components
 
@@ -865,17 +872,17 @@ For debugging in Drupal you need to:
 
 1. Disable aggregation first on performance page `/admin/config/development/performance`
 
-<img src="https://raw.githubusercontent.com/skilld-labs/kaizer/images/images/2.png?raw=true" width="500"/>
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/2.png?raw=true" width="500"/>
 
 2. Thanks to Drupal 10.1 we now have `Development settings` page `/admin/config/development/settings`. You have
 to enable everything on this page
 
-<img src="https://raw.githubusercontent.com/skilld-labs/kaizer/images/images/3.png?raw=true" width="500"/>
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/3.png?raw=true" width="500"/>
 
 3. Then open DevTools in browser on the user page and there you will see a lot of useful information for every
 layer of render
 
-<img src="https://raw.githubusercontent.com/skilld-labs/kaizer/images/images/4.png?raw=true" width="700"/>
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/4.png?raw=true" width="700"/>
 
 ## License
 

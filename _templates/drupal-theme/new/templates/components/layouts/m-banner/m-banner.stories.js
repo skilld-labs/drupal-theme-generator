@@ -10,7 +10,7 @@ import {
 } from '@story-handler';
 
 export default {
-  title: 'Layouts / Banner',
+  title: 'Molecules / Banner',
   parameters: {
     // layout: 'fullscreen',
     // backgrounds: { default: 'grey' },
