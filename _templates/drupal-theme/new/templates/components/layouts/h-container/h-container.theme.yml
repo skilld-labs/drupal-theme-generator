@@ -8,7 +8,6 @@ h_container:
   base hook: 'layout'
   fields:
     content:
-      type: render
       label: Content
   settings:
     width:

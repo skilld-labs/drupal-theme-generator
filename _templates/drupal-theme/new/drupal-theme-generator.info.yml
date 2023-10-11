@@ -10,9 +10,8 @@ dependencies:
   - ui_patterns:ui_patterns
   - ui_patterns_library:ui_patterns_library
   - ui_patterns_field_formatters:ui_patterns_field_formatters
-  - ui_patterns_layouts:ui_patterns_layouts
+  - component_connector:component_connector
   - components:components
-#  - storybook_connector:storybook_connector
 
 regions:
   branding: 'Branding'

@@ -3,7 +3,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/layouts/
 ---
 m_card:
   use: '@component/m-card/m-card.html.twig'
-  label: Layouts / Card
+  label: Layout / Card
   hook theme: 'm_card'
   base hook: 'layout'
   fields:

@@ -8,18 +8,17 @@
   </a>
 </p>
 <p align="center">
-  This theme generator was inspired by <a href="https://www.drupal.org/project/component_connector">Component connector</a> initiative. 
+  This theme generator was inspired by <a href="https://www.drupal.org/project/component_connector">Component connector</a> module. 
   It will help you to generate your custom theme for <a href="https://www.drupal.org/">Drupal</a>
 </p>
 
 #### Navigation
-- [About component connector initiative](#about-component-connector-initiative)
-- - [What we actually call a component](#what-we-actually-call-a-component)
-- - [Ways of components delivering in drupal today](#ways-of-components-delivering-in-drupal-today)
-- - [Our native integration](#our-native-integration)
-- - [What's the benefits](#whats-the-benefits)
-- [Features generated theme will have](#features-generated-theme-will-have)
 - [Installation](#installation)
+- [Features](#features)
+- [About component connector module](#about-component-connector-module)
+- - [Ways of components delivering in drupal today](#ways-of-components-delivering-in-drupal-today)
+- - [Integration with component connector module](#integration-with-component-connector-module)
+- - [What's the benefits](#whats-the-benefits)
 - [Explanation of generated theme](#explanation-of-generated-theme)
 - - [Purposes of generated theme](#purposes-of-generated-theme)
 - - [Structure of generated theme](#structure-of-generated-theme)
@@ -52,16 +51,44 @@
 - [Debug in Drupal](#debug-in-drupal)
 - [License](#license)
 
-## About component connector initiative
+## Installation
 
-The process of delivering components in Drupal is not so easy thing. Drupal 
+Our plans are to create contrib starterkit theme and put it on drupal.org, so you will be able
+to generate sub-theme using
+[this php script](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme)
+or drush. However these functionalities aren't done yet.
+
+But already today you can generate your new drupal theme with this generator using:
+1. `npx @skilld/drupal-theme-generator`
+2. or via docker - `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node:lts-alpine npx @skilld/drupal-theme-generator`
+
+After execution of one of those commands - just follow instructions in console.
+
+Then you have to:
+1. `cd themename/`
+2. `yarn install` or via docker `make install`
+3. `yarn build` or via docker `make build`
+
+## Features
+
+- [Vite](https://vitejs.dev/)
+- PostCSS v8.4
+- Javascript ES6+
+- Drupal's breakpoints in CSS and JS. [Read more](#drupals-breakpoints-in-css-and-js)
+- Rems everywhere. Write your source css styles in pixels, but on the `build` task it will be converted to `rems` automatically.
+- [Storybook](https://storybook.js.org/docs/react/builders/vite) v7
+- Drupal component generator - [learn more](https://www.npmjs.com/package/@skilld/drupal-component-generator)
+- Linting and auto-fixer of CSS, JS, YML files using Stylelint, Eslint and Prettier
+- SVG sprite generator and optimizer of SVG assets. [Why SVG sprite technology](#why-svg-sprite-technology)
+- [Favicon generator](https://www.npmjs.com/package/cli-real-favicon). Check [below](#how-to-generate-favicon) how to use favicon generator.
+- Integration with [Color](https://www.drupal.org/project/color) module to be able to customize palette of colours on your web-site through admin back office.
+- Multiple base components pre-installed in theme with minimal styles and scripts.
+
+## About component connector module
+
+The process of delivering components in Drupal is not so easy thing. Drupal
 is having own [Render API](https://www.drupal.org/docs/drupal-apis/render-api) which is a bit out of component approach. However, component approach
 turn out to be very popular and we want to promote delivering of front-end components in Drupal.
-
-### What we actually call a component
-
-Definitely when we are saying `component` - we are talking about `UI Component`. So it should have
-some html markup, optional styles and scripts required by this component only.
 
 ### Ways of components delivering in drupal today
 
@@ -70,7 +97,7 @@ Initially you have many different ways to do that. For example:
 1. Via twig overrides you can ` {{ include }}` twig of front-end component to apply it in Drupal.
 2. Via [Drupal hooks](https://api.drupal.org/api/drupal/core%21core.api.php/group/hooks/10): preprocess hooks, alter hooks and so on.
 3. If your component should be layout in drupal - then [Layout API](https://www.drupal.org/docs/drupal-apis/layout-api)
-4. Writing your own theme hooks which will take your component into account 
+4. Writing your own theme hooks which will take your component into account
 5. And so on - many ways !
 
 Another problem is [delivering of assets in Drupal](https://www.drupal.org/docs/develop/creating-modules/adding-assets-css-js-to-a-drupal-module-via-librariesyml).
@@ -78,16 +105,16 @@ Initially your `my-component/styles.css` and `my-component/scripts.js` is nothin
 1. Declare a new drupal library
 2. Attach it where need.
 
-Of course, today we already have several great initiatives, like [SDC](https://www.drupal.org/project/sdc) or 
+Of course, today we already have several great initiatives, like [SDC](https://www.drupal.org/project/sdc) or
 [UI Patterns](https://www.drupal.org/project/ui_patterns), which already greatly simplifying life of developers.
 But are these initiatives enough?
 
 Well, `SDC` initiative can't resolve next problems:
 1. It still requires an extra layer to connect your component via twig for example - where you have to override drupal's
-twig file just to include twig of your component and map the fields to 
-[SDC props and slots](https://www.drupal.org/docs/develop/theming-drupal/using-single-directory-components/using-your-new-single-directory-component#s-using-your-component-through-a-render-array).
-2. Second problem is an actually dangerous mapping of drupal's fields. 
-We are not recommending to map entity machine names to component's props and slots, for example:
+   twig file just to include twig of your component and map the fields to
+   [SDC props and slots](https://www.drupal.org/docs/develop/theming-drupal/using-single-directory-components/using-your-new-single-directory-component#s-using-your-component-through-a-render-array).
+2. Second problem is an actually dangerous mapping of drupal's fields.
+   We are not recommending to map entity machine names to component's props and slots, for example:
 
 ```
 {{ include('my-title', {
@@ -121,36 +148,36 @@ the button?
 Regarding `UI Patterns` - unfortunately as a standalone module it can't wrap all the possible cases in Drupal.
 For example:
 - How to connect `my-selectbox` component to the core theme hook `select` with its template `select.html.twig`?
-Right now only by using old-school ways: via twig overrides, or playing around drupal hooks. So it becomes a question
-to all core theme hooks drupal have: `pager`, `breadcrumb`, `status_messages`, `input`, `textarea`, `details` and
-[so on](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/group/themeable/9).
+  Right now only by using old-school ways: via twig overrides, or playing around drupal hooks. So it becomes a question
+  to all core theme hooks drupal have: `pager`, `breadcrumb`, `status_messages`, `input`, `textarea`, `details` and
+  [so on](https://api.drupal.org/api/drupal/core%21lib%21Drupal%21Core%21Render%21theme.api.php/group/themeable/9).
 
 Yes, `UI patterns` already can provide you many different ways of connection your component into drupal: as a field formatter,
 as a layout, as a view style, and so on. So potentially you can build ~60% of the web-site only by using `UI Patterns`
 and configuration of them via admin back-office.
 
-### Our native integration
-                
-We wanted to get rid of all the extra layers to connect components in Drupal and stay native and flexible
-at the same time. You have to [check this](https://git.drupalcode.org/project/component_connector) about our integration before reading on.
+### Integration with component connector module
 
-### What's the benefits
+We wanted to get rid of all the extra layers to connect components in Drupal and stay native and flexible
+at the same time. You have to [check this module](https://git.drupalcode.org/project/component_connector) before reading on.
+
+### What's the benefits of generators and component connector module
 
 #### For a company in long term strategy.
 
-1. Much less time development of drupal websites will take. 
+1. Much less time development of drupal websites will take.
 
 We are estimating a 30% reduction in the total time to develop your custom Drupal project with custom design system of any complexity
 comparing to what you had before - that means... money !
 
-2. Storybook included in theme generator. 
+2. Build Storybook today, integrate in Drupal later.
 
-I hope you all already had experience with [Storybook](https://storybook.js.org/). It's a great tool for keeping 
-front-end state up-to-date on the project. It makes your customers happy since they can see a lot of progress already in the 
-beginning of project. Since front-end developer can build all pages with all html structure, styles and scripts 
+I hope you all already had experience with [Storybook](https://storybook.js.org/). It's a great tool for keeping
+front-end state up-to-date on the project. It makes your customers happy since they can see a lot of progress already in the
+beginning of project. Since front-end developer can build all pages with all html structure, styles and scripts
 from your unique design system, spending only ~10-20% of the project's budget and customer can see already a lot of results
-in the beginning of its project. But that's not all, because with our integration almost all components from storybook will be 
-fully re-used by Drupal, so `Storybook` becomes not a standalone tool. Methodology of doing storybook is well described 
+in the beginning of its project. But that's not all, because with component connector almost all components from storybook will be
+fully re-used by Drupal, so `Storybook` becomes not a standalone tool. Methodology of doing storybook is well described
 [below](#methodology-of-doing-storybook).
 
 3. Fast growing drupal experience of drupal developers.
@@ -159,51 +186,13 @@ fully re-used by Drupal, so `Storybook` becomes not a standalone tool. Methodolo
 
 1. <strong>Again</strong>. <strong>Experience</strong> with Drupal.
 
-2. Well known tools in theme generator.
+2. Familiar structure of theme, similar to drupal core themes.
 
-All the well known features partially coming from drupal core under the hood: postCSS, Javascript ES6, linting processes.
-Also many other very helpful features: [read below](#features-generated-theme-will-have).
+3. Powerful and modern tools: vite, storybook - everything to make your life easier and development process faster.
 
-3. Familiar structure of theme, similar to drupal core themes.
-
-4. Powerful and modern tools: vite, storybook - everything to make your life easier and development process faster.
-
-5. Faster creation of new components, thanks to [Component generator](https://www.npmjs.com/package/@skilld/drupal-component-generator).
+4. Faster creation of new components, thanks to [Component generator](https://www.npmjs.com/package/@skilld/drupal-component-generator).
 
 How to use `Component generator` is described [below](#how-to-create-new-component).
-
-## Features generated theme will have
-
-- [Vite](https://vitejs.dev/)
-- PostCSS v8.4
-- Javascript ES6+ (No need for ES5 anymore, because all major browsers already [supporting](https://caniuse.com/?search=es6) ES6)
-- Drupal's breakpoints in CSS and JS. [Read more](#drupals-breakpoints-in-css-and-js)
-- Rems everywhere. Write your source css styles in pixels, but on the `build` task it will be converted to `rems` automatically.
-- [Storybook](https://storybook.js.org/docs/react/builders/vite) v7.0
-- Drupal component generator - [learn more](https://www.npmjs.com/package/@skilld/drupal-component-generator)
-- Linting and auto-fixer of CSS, JS, YML files using Stylelint, Eslint and Prettier
-- SVG sprite generator and optimizer of SVG assets. [Why SVG sprite technology](#why-svg-sprite-technology)
-- [Favicon generator](https://www.npmjs.com/package/cli-real-favicon). Check [below](#how-to-generate-favicon) how to use favicon generator.
-- Integration with [Color](https://www.drupal.org/project/color) module to be able to customize palette of colours on your web-site through admin back office.
-- Multiple base components pre-installed in theme with minimal styles and scripts.
-
-## Installation
-
-Our plans are to create contrib starterkit theme and put it on drupal.org, so you will be able 
-to generate sub-theme using 
-[this php script](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme)
-or drush. However these functionalities aren't done yet.
-
-But already today you can generate your new drupal theme with our generator using:
-1. `npx @skilld/drupal-theme-generator`
-2. or via docker - `docker run -it --rm -u $(id -u):$(id -g) -v "$PWD":/app -w /app node:lts-alpine npx @skilld/drupal-theme-generator`
-
-After execution of one of those commands - just follow instructions in console.
-
-Then you have to:
-1. `cd themename/`
-2. `yarn install` or via docker `make install`
-3. `yarn build` or via docker `make build`
 
 ## Explanation of generated theme
 
@@ -213,28 +202,28 @@ You have to install and enable the following Drupal modules before enabling gene
 - [Components](https://www.drupal.org/project/components)
 - [Component connector](https://www.drupal.org/project/component_connector)
 
-However if you don't want/need to get full experience of usage of our component connector initiative and want
+However if you don't want/need to get full experience of the usage of component connector module and want
 just to try theme as it is - you can remove all `dependencies` from `your_theme.info.yml` file except of
-`components:components` and just enable the theme in Drupal.
+`components:components`.
 
 ### Purposes of generated theme
 
-Goal of generated theme and our initiative is to implement a whole design system in components and integrate
+Goal of generated theme is to implement a whole design system in components and integrate
 them in Drupal natively.
 
 <strong>As a front-end developer you can not be an architect of Drupal web-site, no matter which experience you have.</strong>
 The architect
-of project can be defined only with communication between all involved persons - project managers, 
+of project can be defined only with communication between all involved persons - project managers,
 back-end and front-end developers, all together. That means when front-end developer want to create one or another component - he
 should think first how this component will be integrated in Drupal - as a `theme`, `layout`, `suggestion` or `ui_patterns`
 way. If front-end developer sure its `my-selectbox` component should be applied to core theme hook `select` - there is
-no problem with it, so front-end developer can just move its component into `suggestions` folder ([Read again about our integration](https://git.drupalcode.org/project/component_connector)
+no problem with it, so front-end developer can just move its component into `suggestions` folder ([Read again about component connector integration](https://git.drupalcode.org/project/component_connector)
 if you don't clearly understand why `suggestions` folder). But if front-end developer can't guess what this component
-will be in Drupal - a component should be placed in `uncategorized` folder and wait for its usage. When back-end developer will 
-start to work on this subject - he can decide how component can be integrated in Drupal and move it from `uncategorized` folder 
+will be in Drupal - a component should be placed in `uncategorized` folder and wait for its usage. When back-end developer will
+start to work on this subject - he can decide how component can be integrated in Drupal and move it from `uncategorized` folder
 to the one of other folders.
 
-However, it was recommended usage. But you also may not use our integration at all. There is always available folders:
+However, it was recommended usage. But you also may not use described integration at all. There is always available folders:
 - `templates/overrides` for your twig overrides
 - `css/` for storing styles
 - `js/` for javascript
@@ -244,16 +233,16 @@ However, it was recommended usage. But you also may not use our integration at a
 
 - Source CSS and JS files have suffixes `.src` in filenames
 - Generated styles and scripts doesn't have `.src` suffix. Normally you should never touch generated assets since it's build affected
-- Styles and scripts required only by Drupal can be added in the root `css/` or `js/` folders. For example styles 
-  for administrative toolbar - we don't want to take care about such components in storybook. So toolbar overrides 
+- Styles and scripts required only by Drupal can be added in the root `css/` or `js/` folders. For example styles
+  for administrative toolbar - we don't want to take care about such components in storybook. So toolbar overrides
   can be done only for Drupal
 - `.storybook/` folder for storing storybook stuff. If you don't use storybook on your project - feel free just ignore or remove this folder
 - `favicon/` folder contains generated favicons for different browsers. You can generate your custom favicon [this way](#how-to-generate-favicon)
 - `fonts/` folder for storing project fonts
-- `images/svg/` folder for storing source SVG assets. Pay attention to `images/sprite.svg` - this file is auto-generated, 
-so you shouldn't modify it normally. [Read more](#svg-sprite) about SVG sprite
-- `templates/` folder contains two sub-folders. One of them is `overrides/` - this folder is for drupal's twig overrides. 
-And `components/` folder for storing components required by our integration.
+- `images/svg/` folder for storing source SVG assets. Pay attention to `images/sprite.svg` - this file is auto-generated,
+  so you shouldn't modify it normally. [Read more](#svg-sprite) about SVG sprite
+- `templates/` folder contains two sub-folders. One of them is `overrides/` - this folder is for drupal's twig overrides.
+  And `components/` folder for storing components required by integration.
 
 ## How to create new component
 
@@ -272,7 +261,7 @@ are living near to sources. So we don't have `dist` or `app` folder in the root 
 `build` task contains subtask `lint:fix` which executes right after build - so linting with auto-fixer included.
 
 There is Stylelint, ESlint and Prettier for the linting of code. Warnings are not allowed -> that's why any warning
-in console will be targeted as `error` type. Stylelint and ESlint are running in a parallel and once it's finished - Prettier 
+in console will be targeted as `error` type. Stylelint and ESlint are running in a parallel and once it's finished - Prettier
 executes. If you got an error on Stylelint or ESlint steps - Prettier will not be executed. Note that <strong>you
 have to resolve all errors in console before making commit.</strong>
 
@@ -280,18 +269,18 @@ There is also watcher available, just run `yarn build:watch` or `make build:watc
 
 ## How to run and compile storybook
 
-To run storybook on local port run `yarn storybook` or via docker 
+To run storybook on local port run `yarn storybook` or via docker
 `make storybook`
 
 To create static storybook run `yarn build:storybook` or `make build:storybook`
 
 ## Linting
 
-Linting and auto-fixers are already included in `build` command. So normally if you are using 
+Linting and auto-fixers are already included in `build` command. So normally if you are using
 `yarn build` or `make build`
 commands - it's already enough. But if you want to just lint assets without `build` task
 simply run `yarn lint` command (or via docker `make lint`).
-And if you want to auto-fix linting errors, run `yarn lint:fix` (or via docker 
+And if you want to auto-fix linting errors, run `yarn lint:fix` (or via docker
 `make lint:fix`)
 
 All warnings are interpreting by all kind of linters as errors.
@@ -300,12 +289,12 @@ will get failed results even in case of `warnings`.
 
 ## Drupal's breakpoints in CSS and JS
 
-We have made a very nice functional, which allows you to align media queries everywhere: in your CSS, JS and 
+We have made a very nice functional, which allows you to align media queries everywhere: in your CSS, JS and
 Drupal's responsive images.
 
 Based on [Breakpoints in Drupal](https://www.drupal.org/docs/theming-drupal/working-with-breakpoints-in-drupal)
 you have already pre-defined `theme_name.breakpoints.yml` file in theme with some pre-defined breakpoints after installation
-of your new theme. Of course your custom design system can have own breakpoints system, but if it's not - you can simply use 
+of your new theme. Of course your custom design system can have own breakpoints system, but if it's not - you can simply use
 default breakpoints provided by our theme generator. And you can use those breakpoints from CSS or JS.
 
 Usage in CSS:
@@ -339,7 +328,7 @@ So you can simply check if window is matching specific media, like this for exam
 if (window.matchMedia(drupalSettings.yourThemeBreakpoints.xl).matches) { ... }
 ```
 
-All the default breakpoints you will get after theme installation are market and `mobile first` based. `Market based` means we did an 
+All the default breakpoints you will get after theme installation are market and `mobile first` based. `Market based` means we did an
 analysis of market of world-spread electronic devices and default breakpoints are the more fitting.
 
 Answering your questions why for example breakpoint `min-width: 1441px` and not `1440px` - it's logically justified.
@@ -350,7 +339,7 @@ triggered.
 
 ## SVG sprite
 
-An SVG sprite is a single SVG file that contains multiple icons as <svg> elements. Each icon has a unique id 
+An SVG sprite is a single SVG file that contains multiple icons as <svg> elements. Each icon has a unique id
 attribute that you can use to select it.
 
 ### Why SVG sprite technology
@@ -368,7 +357,7 @@ There is a lot of benefits of using svg sprite instead of other technologies of 
 
 Source SVG icons should be stored in `images/svg` folder. Compiled SVG sprite lives in `images/sprite.svg`.
 
-To generate SVG sprite from source icons just run `yarn sprite` or via docker 
+To generate SVG sprite from source icons just run `yarn sprite` or via docker
 `make sprite`
 
 SVG sprite generation is a rare task, so it's not included in `build` task, because it takes time,
@@ -393,7 +382,7 @@ Usage in PHP:
 '<svg><use xlink:href="' . _your_theme_name_get_svg_sprite_path() . '#svg-{{ icon }}"></use></svg>'
 ```
 
-Path to SVG sprite lives in [drupalSettings](https://www.drupal.org/docs/drupal-apis/javascript-api/javascript-api-overview) and 
+Path to SVG sprite lives in [drupalSettings](https://www.drupal.org/docs/drupal-apis/javascript-api/javascript-api-overview) and
 its usage in JS is:
 
 ```
@@ -404,13 +393,13 @@ its usage in JS is:
 
 ### How to optimize source SVG files
 
-Sometimes source icons can have weird structure inside and many useless attributes and techniques 
-for web usage (for example it's `stroke` based instead of `fill`). If you need to clean-up specific svg 
-icon - simply run `FILE=icon-name.svg yarn svg-fix` or via docker `FILE=icon-name.svg make svg-fix`. 
+Sometimes source icons can have weird structure inside and many useless attributes and techniques
+for web usage (for example it's `stroke` based instead of `fill`). If you need to clean-up specific svg
+icon - simply run `FILE=icon-name.svg yarn svg-fix` or via docker `FILE=icon-name.svg make svg-fix`.
 You don't need to write full path to icon in those commands. It's supposed your icon already placed in
 `images/svg` folder
 
-If you need to optimize all of the icons at once - run `yarn svg-fix:all` or via docker 
+If you need to optimize all of the icons at once - run `yarn svg-fix:all` or via docker
 `make svg-fix:all`
 
 ## How to generate favicon
@@ -505,7 +494,7 @@ Now several words about some "specific" pre-defined components.
 
 #### Buttons and inputs
 
-Keep in mind that with our native integration we are not recommending to create abstract components which can not be
+Keep in mind that with component connector native integration we are not recommending to create abstract components which can not be
 applicable to Drupal, like `button` component for example (which means
 UI component `Button`). In terms of Drupal - there is no simple integration of UI component `button`. But Drupal have 
 for example `input` theme hook. So we can be sure that `input [type="submit"]` should look like a button. For that
