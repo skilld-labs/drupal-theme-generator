@@ -30,6 +30,7 @@ machine_name_of_responsive_image_group_1:
       2x: 1000_x_400_scale_and_crop
     xxs:
       1x: 500_x_200_scale_and_crop
+      2x: '_empty image_'
   fallback: 500_x_200_scale_and_crop
 machine_name_of_responsive_image_group_2:
   label: Banner

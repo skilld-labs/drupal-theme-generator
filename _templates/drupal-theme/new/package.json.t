@@ -28,6 +28,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
 <% if (has_storybook) { -%>
     "drupal-attribute": "^1.0.2",
     "drupal-twig-extensions": "^1.0.0-beta.4",
+    "kill-port": "^2.0.1",
 <% } -%>
     "oslllo-svg-fixer": "^2.2.0",
     "prepend-file-cli": "^1.0.6",
@@ -80,7 +81,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
     "build:watch": "node vite.build.js --watch",
 <% if (has_storybook) { -%>
     "build:storybook": "storybook build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "yarn kill-port 6006 && storybook dev -p 6006",
 <% } -%>
     "lint": "stylelint \"**/*.src.css\" --config './.stylelintrc' --max-warnings '0' & eslint --ext .yml . & eslint \"**/*.src.js\" --max-warnings 0 && prettier -c .",
     "lint:fix": "stylelint \"**/*.src.css\" --config './.stylelintrc' --fix --max-warnings '0' & eslint --ext .yml . --fix & eslint \"**/*.src.js\" --fix --max-warnings 0 && prettier -w --cache .",

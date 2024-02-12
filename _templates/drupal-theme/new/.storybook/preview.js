@@ -17,7 +17,7 @@ addDrupalExtensions(Twig, {
 });
 const allTwigPatternTemplates = import.meta.glob(
   '../templates/components/**/*.html.twig',
-  { as: 'raw', import: 'default', eager: true },
+  { query: '?raw', import: 'default', eager: true },
 );
 
 importAssets();

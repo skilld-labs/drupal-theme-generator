@@ -58,13 +58,3 @@ auto_x_60_scale:
   effect: image_scale
   width: 40
   height: 40
-# Why do you see 1_x_1 image style here?
-# That's a little trick for responsive image groups, where image for example
-# can be hidden on some breakpoint. And when image is hidden - we can set it
-# to use 1_x_1 image style. In that case browser will download just few bytes
-# (because of 1px image).
-1_x_1_fallback:
-  label: 1 x 1 (Fallback)
-  effect: image_scale_and_crop
-  width: 1
-  height: 1

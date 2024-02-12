@@ -30,6 +30,11 @@ const randomDimension = (base, maxRatio = 1.5, minRatio = 0.5) =>
 const loadImageStyleData = (current, all) => {
   let width;
   let height;
+
+  if (current === '_empty image_') {
+    return { width: 1, height: 1 };
+  }
+
   if (all[current].effect === 'image_scale_and_crop') {
     width = all[current].width;
     height = all[current].height;
