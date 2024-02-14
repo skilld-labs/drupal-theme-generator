@@ -15,7 +15,7 @@ use Drupal\Core\Render\Markup;
  * Returns path to svg sprite.
  */
 function _<%= h.changeCase.lower(name) %>_get_svg_sprite_path() {
-  return base_path() . \Drupal::theme()->getActiveTheme()->getPath() . '/images/sprite.svg';
+  return base_path() . \Drupal::theme()->getActiveTheme()->getPath() . '/images/sprite.svg?' . \Drupal::service('asset.query_string')->get();
 }
 
 /**
