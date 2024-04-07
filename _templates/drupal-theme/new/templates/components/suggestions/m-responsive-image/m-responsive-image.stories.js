@@ -76,9 +76,13 @@ export const Basic = {
     );
     data.img_element = `<img storybook-fallback-image-style-name="${
       responsiveImageGroups[responsiveImageGroup].fallback
-    }" ${args.alt ? `alt="${args.alt}"` : ''} src="${`${faker.image[
-      fakerProvider
-    ](fallback.width, fallback.height)}`}"/>`;
+    }" ${args.alt ? `alt="${args.alt}"` : ''} src="${faker.image.urlLoremFlickr(
+      {
+        category: fakerProvider,
+        width: fallback.width,
+        height: fallback.height,
+      },
+    )}"/>`;
     data.sources = [];
     const { breakpoints } = responsiveImageGroups[responsiveImageGroup];
     if (breakpoints) {
@@ -95,10 +99,11 @@ export const Basic = {
           }storybook-image-style-name-for-${multiplier}-multiplier="${
             breakpoints[breakpoint][multiplier]
           }"`;
-          srcset += `${i > 0 ? ', ' : ' '}${`${faker.image[fakerProvider](
-            breakpointImageStyle.width,
-            breakpointImageStyle.height,
-          )}`} ${multiplier}`;
+          srcset += `${i > 0 ? ', ' : ' '}${faker.image.urlLoremFlickr({
+            category: fakerProvider,
+            width: breakpointImageStyle.width,
+            height: breakpointImageStyle.height,
+          })} ${multiplier}`;
         });
         data.sources.push(
           `storybook-breakpoint-name="${breakpoint}" ${help} srcset="${srcset}" media="${window.drupalSettings.<%= h.changeCase.camelCase(name) %>Breakpoints[breakpoint]}"`,

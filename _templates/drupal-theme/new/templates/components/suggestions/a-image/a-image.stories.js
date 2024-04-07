@@ -69,7 +69,11 @@ export const Basic = {
     data.attributes.setAttribute('height', height);
     data.attributes.setAttribute(
       'src',
-      faker.image[fakerProvider](width, height),
+      faker.image.urlLoremFlickr({
+        category: fakerProvider,
+        width,
+        height,
+      }),
     );
 
     if (args.alt) {
