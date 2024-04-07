@@ -52,28 +52,30 @@ const <%= h.changeCase.camelCase(name) %>Breakpoints = Object.keys(breakpoints).
   {},
 );
 
-export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
-  AllArgTypes: getYmlData(),
-  controls: {
-    matchers: {
-      color: /(background|color)$/i,
-      date: /Date$/,
+const preview = {
+  parameters: {
+    actions: { argTypesRegex: '^on[A-Z].*' },
+    AllArgTypes: getYmlData(),
+    controls: {
+      matchers: {
+        color: /(background|color)$/i,
+        date: /Date$/,
+      },
     },
-  },
-  // Maybe load only Twig.Template.Registry somehow here.
-  Twig: { ...Twig },
-  backgrounds: {
-    values: [{ name: 'grey', value: '#ddd' }],
-  },
-  options: {
-    storySort: (a, b) => {
-      if (a.id.startsWith('templates') && b.id.startsWith('pages')) {
-        return -1;
-      }
-      return a.id === b.id
-        ? 0
-        : a.id.localeCompare(b.id, undefined, { numeric: true });
+    // Maybe load only Twig.Template.Registry somehow here.
+    Twig: { ...Twig },
+    backgrounds: {
+      values: [{ name: 'grey', value: '#ddd' }],
+    },
+    options: {
+      storySort: (a, b) => {
+        if (a.id.startsWith('templates') && b.id.startsWith('pages')) {
+          return -1;
+        }
+        return a.id === b.id
+          ? 0
+          : a.id.localeCompare(b.id, undefined, { numeric: true });
+      },
     },
   },
 };
@@ -125,3 +127,5 @@ window.drupalSettings = {
     });
   });
 })(Drupal, window.drupalSettings);
+
+export default preview;

@@ -1,7 +1,6 @@
 ---
 to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/.storybook/plugins/controls/manager.js` : null %>"
 ---
-import React from 'react';
 import { addons } from '@storybook/manager-api';
 import { defArgTypes } from '../story-handler';
 import { STORY_PREPARED } from '@storybook/core-events';

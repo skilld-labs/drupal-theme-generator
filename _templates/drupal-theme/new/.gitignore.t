@@ -8,3 +8,4 @@ composer.lock
 .idea
 vendor
 yarn-error.log
+.yarn

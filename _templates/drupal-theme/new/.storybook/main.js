@@ -2,22 +2,23 @@
 to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/.storybook/main.js` : null %>"
 ---
 import content from '@originjs/vite-plugin-content';
-
-const path = require('path');
-const { mergeConfig } = require('vite');
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 import { sync } from 'glob';
+
+const dir = dirname(fileURLToPath(import.meta.url));
 
 let aliases = {};
 sync(`templates/components/**/*.stories.js`).forEach((component) => {
   aliases[`@${component.split('/').pop().replace('.stories.js', '')}`] =
-    path.join(__dirname, '../', component);
+    path.join(dir, '../', component);
   const split = component.split('/');
   split.pop();
   aliases[`@${component.split('/').pop().replace('.stories.js', '')}-folder`] =
-    path.join(__dirname, '../', split.join('/'));
+    path.join(dir, '../', split.join('/'));
 });
 
-module.exports = {
+export default {
   stories: ['../templates/components/**/*.stories.js'],
   addons: ['@storybook/addon-essentials', './plugins/controls/manager.js'],
   framework: {
@@ -28,18 +29,16 @@ module.exports = {
     autodocs: 'tag',
   },
   async viteFinal(config, { configType }) {
+    const { mergeConfig } = await import('vite');
+
     return mergeConfig(config, {
       plugins: [content()],
       resolve: {
         alias: {
-          '@root': path.join(__dirname, '../'),
-          '@images': path.join(__dirname, '../', 'images'),
-          '@fonts': path.join(__dirname, '../', 'fonts'),
-          '@story-handler': path.join(
-            __dirname,
-            '/',
-            'plugins/story-handler.js',
-          ),
+          '@root': path.join(dir, '../'),
+          '@images': path.join(dir, '../', 'images'),
+          '@fonts': path.join(dir, '../', 'fonts'),
+          '@story-handler': path.join(dir, '/', 'plugins/story-handler.js'),
           ...aliases,
         },
       },

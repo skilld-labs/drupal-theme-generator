@@ -40,7 +40,6 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patte
   position: relative;
 }
 .splide__list {
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   display: flex;
   height: 100%;
@@ -80,7 +79,6 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patte
   visibility: visible;
 }
 .splide__slide {
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   box-sizing: border-box;
   flex-shrink: 0;

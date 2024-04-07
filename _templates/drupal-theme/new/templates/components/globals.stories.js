@@ -1,7 +1,7 @@
 ---
 to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/components/globals.stories.js` : null %>"
 ---
-import { useEffect, useState } from '@storybook/client-api';
+import { useEffect, useState } from '@storybook/preview-api';
 import parse from 'style-to-object';
 import * as colors from '../../color/colors.css?inline';
 

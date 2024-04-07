@@ -1,10 +1,9 @@
 ---
 to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/.storybook/plugins/story-handler.js` : null %>"
 ---
-import { useParameter, useEffect } from '@storybook/client-api';
+import { useParameter, useEffect } from '@storybook/preview-api';
 import DrupalAttribute from 'drupal-attribute';
 import svgSprite from '../../images/sprite.svg';
-import React from 'react';
 
 // Components objects global storage.
 let componentsImport = {};
