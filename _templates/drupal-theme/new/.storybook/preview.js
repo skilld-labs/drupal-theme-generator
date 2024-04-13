@@ -9,8 +9,10 @@ import Twig from 'twig';
 import { addDrupalExtensions } from 'drupal-twig-extensions/twig';
 import DrupalAttributes from 'drupal-attribute';
 import once from '@drupal/once';
-import { importAssets, getYmlData } from './plugins/story-handler';
+import { getYmlData } from './plugins/story-handler';
+import $ from 'jquery';
 
+global.$ = global.jQuery = $;
 window.once = once;
 addDrupalExtensions(Twig, {
   // Optionally, set options to configure how the Drupal
@@ -20,7 +22,60 @@ const allTwigPatternTemplates = import.meta.glob(
   { query: '?raw', import: 'default', eager: true },
 );
 
-importAssets();
+// Resolving order of importing assets. Can't use combined glob here, because
+// assets living in different folders (aka.: theme, ui_patterns, suggestions, etc.).
+// So we need to be sure - first, atoms will be imported, then molecules, then organisms,
+// etc.
+const importAllStyles = () => {
+  import.meta.glob('../templates/components/**/a-*/*.src.css', {
+    eager: true,
+  });
+  import.meta.glob('../templates/components/**/h-*/*.src.css', {
+    eager: true,
+  });
+  import.meta.glob('../templates/components/**/m-*/*.src.css', {
+    eager: true,
+  });
+  import.meta.glob('../templates/components/**/o-*/*.src.css', {
+    eager: true,
+  });
+  import.meta.glob('../templates/components/**/t-*/*.src.css', {
+    eager: true,
+  });
+  import.meta.glob('../templates/components/**/p-*/*.src.css', {
+    eager: true,
+  });
+};
+
+const importAllScripts = () => {
+  const libsJS = import.meta.glob(['../templates/components/**/*.src.js']);
+
+  for (const path in libsJS) {
+    libsJS[path]();
+  }
+};
+
+importAllStyles();
+importAllScripts();
+
+window.allStories = import.meta.glob(
+  [
+    '../templates/components/**/*.stories.js',
+    '!../templates/components/globals.stories.js',
+  ],
+  { eager: true },
+);
+
+window.allComponentYMLs = import.meta.glob(
+  [
+    '../templates/components/**/*.yml',
+    '!../templates/components/**/config.*.yml',
+  ],
+  {
+    import: 'default',
+    eager: true,
+  },
+);
 
 // here we initiate all twig templates to save them in cache of Twig.Templates.registry
 // and get by reference in render of story-handler.js

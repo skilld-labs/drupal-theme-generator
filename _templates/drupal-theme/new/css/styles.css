@@ -44,9 +44,14 @@ pre {
   white-space: normal;
   word-break: break-all;
 }
-[disabled],
-.is-disabled {
+button[disabled],
+input[disabled],
+textarea[disabled],
+select[disabled] {
   cursor: not-allowed;
+}
+a[href].is-disabled {
+  pointer-events: none;
 }
 .scroll-lock {
   overflow: hidden;

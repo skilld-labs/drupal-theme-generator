@@ -8018,6 +8018,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jquery@npm:^3":
+  version: 3.7.1
+  resolution: "jquery@npm:3.7.1"
+  checksum: 10c0/808cfbfb758438560224bf26e17fcd5afc7419170230c810dd11f5c1792e2263e2970cca8d659eb84fcd9acc301edb6d310096e450277d54be4f57071b0c82d9
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -8933,56 +8940,6 @@ __metadata:
   checksum: 10c0/1f8197e8a19e63645a786581d58c41df7853da26702dbc005193e2437c98ca49b255345c173d50c08fe4b4dbb363e53cb655ecc570791f8deb09887248dd34a2
   languageName: node
   linkType: hard
-
-"my_theme@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "my_theme@workspace:."
-  dependencies:
-    "@drupal/once": "npm:^1"
-    "@faker-js/faker": "npm:^8"
-    "@originjs/vite-plugin-content": "npm:^1"
-    "@skilld/drupal-component-generator": "npm:^1"
-    "@splidejs/splide": "npm:^4"
-    "@storybook/addon-essentials": "npm:^8"
-    "@storybook/addon-interactions": "npm:^8"
-    "@storybook/blocks": "npm:^8"
-    "@storybook/html": "npm:^8"
-    "@storybook/html-vite": "npm:^8"
-    "@storybook/preview-api": "npm:^8"
-    "@storybook/testing-library": "npm:^0"
-    autoprefixer: "npm:^10"
-    cli-real-favicon: "npm:^0"
-    drupal-attribute: "npm:^1"
-    drupal-twig-extensions: "npm:^1.0.0-beta.5"
-    eslint: "npm:^8"
-    eslint-config-airbnb-base: "npm:^15"
-    eslint-config-prettier: "npm:^9"
-    eslint-plugin-import: "npm:^2"
-    eslint-plugin-prettier: "npm:^5"
-    eslint-plugin-yml: "npm:^1"
-    glob: "npm:^10"
-    oslllo-svg-fixer: "npm:^4"
-    postcss: "npm:^8"
-    postcss-custom-media: "npm:^10"
-    postcss-custom-media-generator: "npm:^1"
-    postcss-discard-empty: "npm:^6"
-    postcss-header: "npm:^3"
-    postcss-nested: "npm:^6"
-    postcss-pxtorem: "npm:^6"
-    prepend-file-cli: "npm:^1"
-    prettier: "npm:^3"
-    storybook: "npm:^8"
-    style-to-object: "npm:^1"
-    stylelint: "npm:^16"
-    stylelint-config-standard: "npm:^36"
-    stylelint-order: "npm:^6"
-    svg-sprite: "npm:^2"
-    svgo: "npm:^3"
-    twig: "npm:^1"
-    vite: "npm:^5"
-    yaml: "npm:^2"
-  languageName: unknown
-  linkType: soft
 
 "nanoid@npm:^3.3.7":
   version: 3.3.7

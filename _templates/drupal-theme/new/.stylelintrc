@@ -6,7 +6,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/.stylelintrc
   "plugins": ["stylelint-order"],
   "rules": {
     "alpha-value-notation": "number",
-    "color-function-notation": "legacy",
+    "color-function-notation": "modern",
     "comment-empty-line-before": null,
     "custom-property-pattern": "^[a-z][-_a-z0-9IE]*$",
     "declaration-block-no-redundant-longhand-properties": null,

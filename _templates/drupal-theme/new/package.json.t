@@ -29,6 +29,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
 <% if (has_storybook) { -%>
     "drupal-attribute": "^1",
     "drupal-twig-extensions": "^1.0.0-beta.5",
+    "jquery": "^3",
 <% } -%>
     "oslllo-svg-fixer": "^4",
     "prepend-file-cli": "^1",
@@ -70,14 +71,14 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
     "yaml": "^2"
   },
   "scripts": {
-    "build": "node vite.build.js && yarn lint:fix",
-    "build:watch": "node vite.build.js --watch",
+    "build": "node vite.build.mjs && yarn lint:fix",
+    "build:watch": "node vite.build.mjs --watch",
 <% if (has_storybook) { -%>
     "build:storybook": "storybook build",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev",
 <% } -%>
-    "lint": "stylelint \"**/*.src.css\" --config './.stylelintrc' --max-warnings '0' & eslint --ext .yml . & eslint \"**/*.src.js\" --max-warnings 0 && prettier -c .",
-    "lint:fix": "stylelint \"**/*.src.css\" --config './.stylelintrc' --fix --max-warnings '0' & eslint --ext .yml . --fix & eslint \"**/*.src.js\" --fix --max-warnings 0 && prettier -w --cache .",
+    "lint": "stylelint \"**/*.src.css\" --config './.stylelintrc' --max-warnings '0' && eslint --ext .yml . && eslint \"**/*.src.js\" --max-warnings 0 && prettier -c .",
+    "lint:fix": "stylelint \"**/*.src.css\" --config './.stylelintrc' --fix --max-warnings '0' && eslint --ext .yml . --fix && eslint \"**/*.src.js\" --fix --max-warnings 0 && prettier -w --cache .",
     "favicon": "mkdir -p favicon && real-favicon generate favicon.config.json favicon.output.json favicon && rm favicon.output.json",
     "svg-fix": "oslllo-svg-fixer -s images/svg/${FILE} -d images/svg && svgo images/svg/${FILE} -o images/svg --final-newline --config svgo.config.js",
     "svg-fix:all": "oslllo-svg-fixer -s images/svg -d images/svg && svgo -f images/svg -o images/svg --final-newline --config svgo.config.js",
