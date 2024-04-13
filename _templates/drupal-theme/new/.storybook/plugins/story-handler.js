@@ -165,49 +165,11 @@ const transformDrupalControlToStorybook = (type) => {
   return type;
 };
 
-// Helpers to needed imports.
-
-// Resolving order of importing assets. Can't use combined glob here, because
-// assets living in different folders (aka.: theme, ui_patterns, suggestions, etc.).
-// So we need to be sure - first, atoms will be imported, then molecules, then organisms,
-// etc.
-export function importAssets() {
-  import.meta.glob('../../templates/components/**/a-*/*.src.css', {
-    eager: true,
-  });
-  import.meta.glob('../../templates/components/**/h-*/*.src.css', {
-    eager: true,
-  });
-  import.meta.glob('../../templates/components/**/m-*/*.src.css', {
-    eager: true,
-  });
-  import.meta.glob('../../templates/components/**/o-*/*.src.css', {
-    eager: true,
-  });
-  import.meta.glob('../../templates/components/**/t-*/*.src.css', {
-    eager: true,
-  });
-  import.meta.glob('../../templates/components/**/p-*/*.src.css', {
-    eager: true,
-  });
-  const libsJS = import.meta.glob(['../../templates/components/**/*.src.js']);
-
-  for (const path in libsJS) {
-    libsJS[path]();
-  }
-}
-
 export function importComponents() {
   if (Object.keys(componentsData).length !== 0) {
     return componentsData;
   }
-  const componentsImportData = import.meta.glob(
-    [
-      '../../templates/components/**/*.stories.js',
-      '!../../templates/components/globals.stories.js',
-    ],
-    { eager: true },
-  );
+  const componentsImportData = window.allStories;
   for (const path in componentsImportData) {
     const name = path.split('/').pop().split('.').shift();
     componentsData[name] = componentsImportData[path];
@@ -220,16 +182,7 @@ export function getYmlData(name) {
   if (Object.keys(componentYmlsData).length !== 0) {
     return name ? componentYmlsData[name] || null : componentYmlsData;
   }
-  const componentYmls = import.meta.glob(
-    [
-      '../../templates/components/**/*.yml',
-      '!../../templates/components/**/config.*.yml',
-    ],
-    {
-      import: 'default',
-      eager: true,
-    },
-  );
+  const componentYmls = window.allComponentYMLs;
 
   for (const path in componentYmls) {
     let folder = path.split('/');

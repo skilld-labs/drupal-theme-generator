@@ -9,3 +9,4 @@ composer.lock
 vendor
 yarn-error.log
 .yarn
+.DS_Store

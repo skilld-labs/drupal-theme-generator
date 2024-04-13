@@ -37,38 +37,38 @@ exec:
 
 install:
 	docker pull $(IMAGE_FRONT); \
-    $(call frontexec, yarn install)
+    $(call frontexec, corepack install && corepack enable && yarn install)
 
 build:
-	$(call frontexec, yarn build)
+	$(call frontexec, corepack install && corepack enable && yarn build)
 
 build\:watch:
-	$(call frontexec, yarn build\:watch)
+	$(call frontexec, corepack install && corepack enable && yarn build\:watch)
 
 build\:storybook:
-	$(call frontexec, yarn build\:storybook)
+	$(call frontexec, corepack install && corepack enable && yarn build\:storybook)
 
 storybook:
-	$(call frontexec, yarn storybook)
+	$(call frontexec, corepack install && corepack enable && yarn storybook)
 
 lint:
-	$(call frontexec, yarn lint)
+	$(call frontexec, corepack install && corepack enable && yarn lint)
 
 lint\:fix:
-	$(call frontexec, yarn lint\:fix)
+	$(call frontexec, corepack install && corepack enable && yarn lint\:fix)
 
 favicon:
-	$(call frontexec, yarn favicon)
+	$(call frontexec, corepack install && corepack enable && yarn favicon)
 
 svg-fix:
 	$(eval FILE := $(FILE))
-	$(call frontexec-svg-fix, yarn svg-fix)
+	$(call frontexec-svg-fix, corepack install && corepack enable && yarn svg-fix)
 
 svg-fix\:all:
-	$(call frontexec, yarn svg-fix\:all)
+	$(call frontexec, corepack install && corepack enable && yarn svg-fix\:all)
 
 sprite:
-	$(call frontexec, yarn sprite)
+	$(call frontexec, corepack install && corepack enable && yarn sprite)
 
 cc:
-	$(call frontexec-with-interactive, yarn cc)
+	$(call frontexec-with-interactive, corepack install && corepack enable && yarn cc)

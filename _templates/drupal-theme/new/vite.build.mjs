@@ -1,11 +1,14 @@
 ---
-to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/vite.build.js
+to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/vite.build.mjs
 ---
-const { build } = require('vite');
-const { sync } = require('glob');
-const { resolve, extname } = require('path');
+import { build } from 'vite';
+import { sync } from 'glob';
+import { resolve, extname } from 'path';
+import * as url from 'url';
+
 const watcher = process.argv[2];
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 const fontExtensions = ['.woff2', '.woff', '.ttf', '.otf', '.eot'];
 const imgExtensions = [
   '.svg',

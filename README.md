@@ -69,18 +69,25 @@ Then you have to:
 2. `yarn install` or via docker `make install`
 3. `yarn build` or via docker `make build`
 
+If you are under Mac OS and want to use Make commands - be sure in Makefile you have:
+
+```
+CUID := 1000#$(shell id -u)
+CGID := 1000#$(shell id -g)
+```
+
 ## Features
 
-- [Vite](https://vitejs.dev/)
-- PostCSS v8.4
+- Vite 5 (ESM build)
+- PostCSS 8
 - Javascript ES6+
+- Storybook 8 (ESM build)
 - Drupal's breakpoints in CSS and JS. [Read more](#drupals-breakpoints-in-css-and-js)
 - Rems everywhere. Write your source css styles in pixels, but on the `build` task it will be converted to `rems` automatically.
-- [Storybook](https://storybook.js.org/docs/react/builders/vite) v7
 - Drupal component generator - [learn more](https://www.npmjs.com/package/@skilld/drupal-component-generator)
 - Linting and auto-fixer of CSS, JS, YML files using Stylelint, Eslint and Prettier
 - SVG sprite generator and optimizer of SVG assets. [Why SVG sprite technology](#why-svg-sprite-technology)
-- [Favicon generator](https://www.npmjs.com/package/cli-real-favicon). Check [below](#how-to-generate-favicon) how to use favicon generator.
+- (Experimental feature) [Favicon generator](https://www.npmjs.com/package/cli-real-favicon). Check [below](#how-to-generate-favicon) how to use favicon generator.
 - Integration with [Color](https://www.drupal.org/project/color) module to be able to customize palette of colours on your web-site through admin back office.
 - Multiple base components pre-installed in theme with minimal styles and scripts.
 

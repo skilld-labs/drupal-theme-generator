@@ -23,9 +23,17 @@ pre {
   word-break: break-all;
 }
 
-[disabled],
-.is-disabled {
-  cursor: not-allowed;
+button,
+input,
+textarea,
+select {
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+a[href].is-disabled {
+  pointer-events: none;
 }
 
 .scroll-lock {

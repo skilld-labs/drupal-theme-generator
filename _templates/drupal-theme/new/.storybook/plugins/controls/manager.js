@@ -9,7 +9,7 @@ addons.register('s-control/scontols', (api) => {
   api.on(STORY_PREPARED, (eventData) => {
     // Here we may change argTypes if needed.
     // Load arg types dynamically.
-    const { argTypes, parameters } = eventData;
+    const { argTypes, parameters, id } = eventData;
     const componentName = parameters.fileName
       .split('/')
       .pop()
@@ -20,6 +20,7 @@ addons.register('s-control/scontols', (api) => {
         ...defArgTypes(parameters.AllArgTypes[componentName]),
         ...argTypes,
       };
+      api.updateStory(id, eventData);
     }
   });
 });
