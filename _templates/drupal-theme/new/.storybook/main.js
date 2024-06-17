@@ -20,7 +20,11 @@ sync(`templates/components/**/*.stories.js`).forEach((component) => {
 
 export default {
   stories: ['../templates/components/**/*.stories.js'],
-  addons: ['@storybook/addon-essentials', './plugins/controls/manager.js'],
+  addons: [
+    '@storybook/addon-essentials',
+    './plugins/controls/manager.js',
+    '@storybook/addon-a11y',
+  ],
   framework: {
     name: '@storybook/html-vite',
     options: {},

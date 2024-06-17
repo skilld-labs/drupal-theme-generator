@@ -3,6 +3,7 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/compo
 ---
 import {
   defRender,
+  printComponentComment,
   renderComponent as r,
   faker,
   DrupalAttribute,
@@ -73,7 +74,7 @@ const BasicRender = (args, context) => {
       }
     }, [args]);
   }
-  return template.render(data);
+  return printComponentComment(data) + template.render(data);
 };
 
 export const Basic = {

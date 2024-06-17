@@ -3,6 +3,7 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/compo
 ---
 import {
   defRender,
+  printComponentComment,
   renderComponent as r,
   faker,
   DrupalAttribute,
@@ -76,14 +77,12 @@ export const Basic = {
       }),
     );
 
-    if (args.alt) {
-      data.attributes.setAttribute('alt', args.alt);
-    }
-    return template.render(data);
+    data.attributes.setAttribute('alt', args.alt || '');
+    return printComponentComment(data) + template.render(data);
   },
   argTypes: {
     style: {
-      name: 'Image styles',
+      name: 'Image style',
       options: Object.values(imageStyles).map((e) => e.label),
       defaultValue: Object.values(imageStyles)[0].label,
       control: {

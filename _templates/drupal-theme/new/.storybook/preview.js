@@ -17,6 +17,20 @@ window.once = once;
 addDrupalExtensions(Twig, {
   // Optionally, set options to configure how the Drupal
 });
+
+// Fixing twig's filter |without
+Twig.extendFilter('without', function (value, params) {
+  params.forEach((param) => {
+    if (value[param]) {
+      delete value[param];
+    }
+  });
+  if (!Object.keys(value).length) {
+    return '';
+  }
+  return value;
+});
+
 const allTwigPatternTemplates = import.meta.glob(
   '../templates/components/**/*.html.twig',
   { query: '?raw', import: 'default', eager: true },

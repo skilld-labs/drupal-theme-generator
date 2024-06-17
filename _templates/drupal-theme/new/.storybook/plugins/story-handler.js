@@ -90,6 +90,8 @@ export const defRender = (args, context, twigPath = null) => {
   });
 
   const data = {
+    storyName: context.name || 'Basic',
+    componentName: componentName,
     attributes: new DrupalAttribute(),
     <%= h.changeCase.lower(name) %>_svg_sprite: svgSprite,
     <%= h.changeCase.camelCase(name) %>SvgSprite: svgSprite,
@@ -126,6 +128,209 @@ export const defRender = (args, context, twigPath = null) => {
     template,
     data,
   };
+};
+
+export const printComponentComment = (data) => {
+  let fields = [];
+  let settings = [];
+
+  const createTextTable = (headers, rows) => {
+    function calculateMaxLengths(headers, rows) {
+      const lengths = headers.map((header) => header.length);
+
+      rows.forEach((row) => {
+        row.forEach((cell, index) => {
+          if (cell.length > lengths[index]) {
+            lengths[index] = cell.length;
+          }
+        });
+      });
+
+      return lengths;
+    }
+
+    function padCell(content, length) {
+      return ' ' + content + ' '.repeat(length - content.length) + ' ';
+    }
+
+    const maxLengths = calculateMaxLengths(headers, rows);
+    const topBorder = '='.repeat(
+      maxLengths.reduce((sum, len) => sum + len + 3, 1),
+    );
+    const headerRow = headers
+      .map((header, index) => padCell(header, maxLengths[index]))
+      .join('|');
+    const separatorRow = '-'.repeat(
+      maxLengths.reduce((sum, len) => sum + len + 3, 1),
+    );
+    const dataRows = rows.map((row) => {
+      return row
+        .map((cell, index) => padCell(cell, maxLengths[index]))
+        .join('|');
+    });
+
+    const table = [
+      topBorder,
+      `|${headerRow}|`,
+      topBorder,
+      ...dataRows.map((row) => `|${row}|`),
+      separatorRow,
+    ];
+
+    return table.join('\n');
+  };
+
+  const $fieldsHeadings = [
+    'Field label',
+    'Field machine name',
+    'If used in render',
+  ];
+  const $settingsHeadings = [
+    'Setting label',
+    'Setting machine name',
+    'Value label',
+    'Value machine name',
+  ];
+
+  if (data.component.fields) {
+    Object.keys(data.component.fields).forEach((key) => {
+      fields.push([
+        data.component.fields[key]?.label,
+        key,
+        data[key] ? '✅' : '❌',
+      ]);
+    });
+  }
+
+  if (data.component.settings) {
+    Object.keys(data.component.settings).forEach((key) => {
+      if (!data[key]) {
+        const defValue = data.component.settings[key].default_value;
+        if (defValue) {
+          const readableDefValue =
+            data.component.settings[key]?.options[defValue] || defValue;
+          я;
+          settings.push([
+            data.component.settings[key]?.label,
+            key,
+            readableDefValue,
+            defValue,
+          ]);
+        } else {
+          settings.push([data.component.settings[key]?.label, key, '❌', '❌']);
+        }
+      } else {
+        const value = data[key];
+        if (typeof value !== 'object') {
+          const readableValue =
+            data.component.settings[key]?.options?.[value] || value;
+          settings.push([
+            data.component.settings[key]?.label,
+            key,
+            readableValue,
+            value,
+          ]);
+        }
+      }
+    });
+  }
+
+  const componentProps =
+    componentsData[data.componentName] ||
+    window.allStories[
+      Object.keys(window.allStories).find((a) =>
+        a.endsWith(`${data.componentName}.stories.js`),
+      )
+    ];
+  ['default', data.storyName].forEach((type) => {
+    if (componentProps[type] && componentProps[type]?.argTypes) {
+      Object.keys(componentProps[type].argTypes).forEach((key) => {
+        settings.push([
+          componentProps[type].argTypes[key]?.name,
+          key,
+          componentProps[type].argTypes[key]?.control?.type === 'boolean'
+            ? data[key]
+              ? 'true'
+              : 'false'
+            : data[key]
+              ? `${data[key]}`
+              : 'Not selected',
+          componentProps[type].argTypes[key]?.control?.type === 'boolean'
+            ? data[key]
+              ? 'true'
+              : 'false'
+            : data[key]
+              ? `${data[key]}`
+              : 'Not selected',
+        ]);
+      });
+    }
+  });
+
+  Object.keys(data).forEach((key) => {
+    if (
+      [
+        'component',
+        'storyName',
+        'componentName',
+        '<%= h.changeCase.lower(name) %>SvgSprite',
+        '<%= h.changeCase.lower(name) %>_svg_sprite',
+      ].includes(key)
+    ) {
+      return;
+    }
+
+    if (
+      (data.component.fields && data.component.fields[key]) ||
+      (data.component.settings && data.component.settings[key])
+    ) {
+      return;
+    }
+
+    if (
+      componentProps.default &&
+      componentProps.default?.argTypes &&
+      componentProps.default?.argTypes[key]
+    ) {
+      return;
+    }
+
+    if (
+      componentProps[data.storyName] &&
+      componentProps[data.storyName]?.argTypes &&
+      componentProps[data.storyName]?.argTypes[key]
+    ) {
+      return;
+    }
+
+    if (data[key].constructor.name === 'DrupalAttribute') {
+      return;
+    }
+
+    if (data.componentName === 'a-select') {
+      return;
+    }
+
+    fields.push([key, key, '✅']);
+  });
+
+  const fieldsRender =
+    fields.length > 0
+      ? `\n💥 Fields:\n${createTextTable($fieldsHeadings, fields)}\n`
+      : '';
+  const settingsRender =
+    settings.length > 0
+      ? `\n💣 Settings:\n${createTextTable($settingsHeadings, settings)}\n`
+      : '';
+  return `
+<!--
+
+📕 Component name: ${data.component.label} (${data.componentName})
+📗 Twig file: ${data.component.use.split('/').pop()}
+📘 Story name: ${data.storyName}
+${fieldsRender}${settingsRender}
+-->
+  `;
 };
 
 // Helper to render inner component without import.

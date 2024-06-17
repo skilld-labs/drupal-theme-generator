@@ -19,6 +19,9 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patte
 .m-flex-field__items {
   display: flex;
   flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .m-flex-field--g-1 .m-flex-field__items {
   gap: 0.625rem;

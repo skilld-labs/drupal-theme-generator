@@ -30,13 +30,13 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patte
     {% if items %}
       <div class="m-slider-field__slider splide" role="group">
         <div class="m-slider-field__track splide__track">
-          <ul class="m-slider-field__list splide__list">
+          <div class="m-slider-field__list splide__list">
             {% for item in items %}
-              <li class="m-slider-field__slide splide__slide">
+              <div class="m-slider-field__slide splide__slide">
                 {{ item }}
-              </li>
+              </div>
             {% endfor %}
-          </ul>
+          </div>
         </div>
       </div>
     {% endif %}

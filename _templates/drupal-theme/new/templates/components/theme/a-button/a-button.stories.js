@@ -3,6 +3,7 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/compo
 ---
 import {
   defRender,
+  printComponentComment,
   renderComponent as r,
   faker,
   DrupalAttribute,
@@ -46,9 +47,7 @@ const BasicRender = (args, context) => {
             ? 'h-button__icon--throbber a-throbber a-throbber--circle '
             : ''
         }a-icon a-icon--throbber-circle" aria-hidden="true">
-          <use xlink:href="${
-            data.<%= h.changeCase.camelCase(name) %>SvgSprite
-          }#svg-throbber-circle"></use>
+          <use xlink:href="${data.<%= h.changeCase.camelCase(name) %>SvgSprite}#svg-throbber-circle"></use>
         </svg>
         ${type === 'full' ? '</span>' : ''}
       `;
@@ -72,7 +71,7 @@ const BasicRender = (args, context) => {
       }
     }, [args]);
   }
-  return template.render(data);
+  return printComponentComment(data) + template.render(data);
 };
 
 export const Basic = {

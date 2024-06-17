@@ -1,6 +1,6 @@
 {
   "name": "@skilld/drupal-theme-generator",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Drupal theme generator",
   "keywords": [
     "Skilld",
@@ -12,6 +12,7 @@
     "components",
     "theme-generator",
     "theme generator",
+    "component connector",
     "component-generator",
     "component generator",
     "drupal-theme",
