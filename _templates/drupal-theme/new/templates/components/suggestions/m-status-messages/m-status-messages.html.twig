@@ -7,7 +7,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/suggesti
       'm-status-messages',
       'm-status-messages--' ~ type,
     ] %}
-    <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes.addClass(classes)|without('role', 'aria-label') }}>
+    <div aria-label="{{ status_headings[type] }}"{{ attributes.addClass(classes)|without('role', 'aria-label') }}>
       {% if type == 'status' %}
         {% set icon = 'checkbox-filled' %}
       {% elseif type == 'warning' %}

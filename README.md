@@ -48,6 +48,8 @@
 - - [Third party libraries](#third-party-libraries)
 - [Methodology of doing Storybook](#methodology-of-doing-storybook)
 - - [How to split design system on components](#how-to-split-design-system-on-components)
+- - [Accessibility in Storybook](#accessibility-in-storybook)
+- - [Which component I'm currently seeing in Storybook?](#which-component-im-currently-seeing-in-storybook)
 - [Debug in Drupal](#debug-in-drupal)
 - [License](#license)
 
@@ -130,7 +132,7 @@ Well, `SDC` initiative can't resolve next problems:
 ```
 
 It's very dangerous to do it like this, because one day field machine name can be changed, or a whole field will be removed,
-or field will be removed from view mode display. In that case you will get an error, because in twig you are expecting
+or field will be removed from view mode display. In that case you can get an error, because in twig you are expecting
 machine name of the field.
 
 So we vote for an abstract mapping, which for example `Layout API` can give to us. Instead of referring to the real machine names
@@ -736,7 +738,7 @@ WIP and there is no "good" solution at this moment.
 
 What you can do today is next:
 1. You can manage third party libraries in `package.json` of the theme and then `import` it normally right in your `my-component.src.js`,
-same to CSS - `@import "your-lib.css"`. Imported libraries are not affecting linters and it be compiled in every target files
+same to CSS - `@import "your-lib.css"`. Imported libraries are not affecting linters and it will be compiled in every target files
 in every component where you did imports. <strong>We don't have chunks!</strong> - that means if you will import same library 10 times in 10
 different components - library will be compiled 10 times in 10 different files. So it's a question of your architecture. If you need to call
 same library several times -> create new component and put your library in there and then re-use it as a dependency in Drupal. The more times
@@ -861,6 +863,27 @@ Pages
 - - `t-homepage`
 - Footer
 - - `o-some-organisms`
+
+### Accessibility in Storybook
+
+`@storybook/addon-a11y` plugin has been added in package.json. It will help you to immediately recognize a11y issues and fix them, right in Storybook!
+
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/7.png?raw=true" width="500"/>
+
+### Which component I'm currently seeing in Storybook?
+
+Every component now have a very detailed explanation in HTML comments. Just open devtools and 
+start to navigate through the DOM tree.
+
+Every HTML comment includes:
+1. Component name (human label and machine name)
+2. Which twig file is used to render component
+3. Story name
+4. List of fields in component illustrating which fields are used and not used in the current render.
+5. List of all possible settings (settings declared in `yml` files or through the argTypes).
+
+<img src="https://raw.githubusercontent.com/skilld-labs/drupal-theme-generator/images/images/6.png?raw=true" width="700"/>
+
 
 ## Debug in Drupal
 

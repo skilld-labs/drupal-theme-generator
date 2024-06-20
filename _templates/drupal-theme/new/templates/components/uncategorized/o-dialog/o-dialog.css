@@ -89,7 +89,7 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/uncatego
   transition-timing-function: var(--transition-timing-function-cubic-bezier);
   transition-duration: var(--transition-duration-0-5);
   transition-property: visibility, opacity;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 0.5);
   -ms-scroll-chaining: none;
   overscroll-behavior: contain;
 }

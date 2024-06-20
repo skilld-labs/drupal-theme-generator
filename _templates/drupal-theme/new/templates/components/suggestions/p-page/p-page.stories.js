@@ -3,6 +3,7 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/compo
 ---
 import {
   defRender,
+  printComponentComment,
   renderComponent as r,
   faker,
   DrupalAttribute,
@@ -36,7 +37,6 @@ const BasicRender = (args, context) => {
         container_horizontal_padding: 'hp-1',
         container_vertical_padding: 'vp-1',
         type: 'type-1',
-        gap: 'g-1',
         label: 'Slider field',
         label_tag: 'h2',
         label_type: 'h2',
@@ -115,7 +115,7 @@ const BasicRender = (args, context) => {
   });
   // data.page.secondary_navigation = Menu.render();
   // useEffect(() => { place-your-js-code-here }, [args]);
-  return template.render(data);
+  return printComponentComment(data) + template.render(data);
 };
 
 export const Homepage = {

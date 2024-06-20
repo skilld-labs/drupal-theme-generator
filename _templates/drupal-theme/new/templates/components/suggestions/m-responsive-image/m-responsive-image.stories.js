@@ -3,6 +3,7 @@ to: "<%= has_storybook ? `${h.src()}/${h.changeCase.lower(name)}/templates/compo
 ---
 import {
   defRender,
+  printComponentComment,
   renderComponent as r,
   faker,
   DrupalAttribute,
@@ -82,11 +83,13 @@ export const Basic = {
         width: fallback.width,
         height: fallback.height,
       },
-    )}"/>`;
+    )} width="${fallback.width}" height="${fallback.height}" alt=""/>`;
     data.sources = [];
     const { breakpoints } = responsiveImageGroups[responsiveImageGroup];
     if (breakpoints) {
       Object.keys(breakpoints).forEach((breakpoint) => {
+        let originalWidth = '';
+        let originalHeight = '';
         let srcset = '';
         let help = '';
         Object.keys(breakpoints[breakpoint]).forEach((multiplier, i) => {
@@ -99,6 +102,10 @@ export const Basic = {
           }storybook-image-style-name-for-${multiplier}-multiplier="${
             breakpoints[breakpoint][multiplier]
           }"`;
+          if (i === 0) {
+            originalWidth = breakpointImageStyle.width;
+            originalHeight = breakpointImageStyle.height;
+          }
           srcset += `${i > 0 ? ', ' : ' '}${faker.image.urlLoremFlickr({
             category: fakerProvider,
             width: breakpointImageStyle.width,
@@ -106,7 +113,14 @@ export const Basic = {
           })} ${multiplier}`;
         });
         data.sources.push(
-          `storybook-breakpoint-name="${breakpoint}" ${help} srcset="${srcset}" media="${window.drupalSettings.<%= h.changeCase.camelCase(name) %>Breakpoints[breakpoint]}"`,
+          `
+            storybook-breakpoint-name="${breakpoint}" 
+            ${help} 
+            srcset="${srcset}" 
+            media="${window.drupalSettings.<%= h.changeCase.camelCase(name) %>Breakpoints[breakpoint]}"
+            width="${originalWidth}"
+            height="${originalHeight}"
+          `,
         );
       });
     }
@@ -115,11 +129,11 @@ export const Basic = {
       'storybook-responsive-image-group-name',
       responsiveImageGroup,
     );
-    return template.render(data);
+    return printComponentComment(data) + template.render(data);
   },
   argTypes: {
     group: {
-      name: 'Responsive image groups',
+      name: 'Responsive image group',
       options: Object.values(responsiveImageGroups).map((e) => e.label),
       control: {
         type: 'radio',

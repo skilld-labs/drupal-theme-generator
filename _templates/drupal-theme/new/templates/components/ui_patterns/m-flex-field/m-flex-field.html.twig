@@ -27,13 +27,13 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/templates/components/ui_patte
         custom_content: label_override,
       } only %}
     {% endif %}
-    <div class="m-flex-field__items">
+    <ul class="m-flex-field__items">
       {% for item in items %}
-        <div class="m-flex-field__item">
+        <li class="m-flex-field__item">
           {{ item }}
-        </div>
+        </li>
       {% endfor %}
-    </div>
+    </ul>
     {% if container %}
       </div>
     {% endif %}

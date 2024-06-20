@@ -17,13 +17,13 @@ to: <%= h.src() %>/<%= h.changeCase.lower(name) %>/package.json
 <% } -%>
     "@skilld/drupal-component-generator": "^1",
 <% if (has_storybook) { -%>
+    "@storybook/addon-a11y": "^8",
     "@storybook/addon-essentials": "^8",
     "@storybook/addon-interactions": "^8",
     "@storybook/blocks": "^8",
     "@storybook/html": "^8",
     "@storybook/html-vite": "^8",
     "@storybook/preview-api": "^8",
-    "@storybook/testing-library": "^0",
 <% } -%>
     "cli-real-favicon": "^0",
 <% if (has_storybook) { -%>
